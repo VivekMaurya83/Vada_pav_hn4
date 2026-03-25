@@ -13,7 +13,7 @@ A comprehensive, AI-powered Web Accessibility Audit Platform built for hackathon
 --**Added the progress tracking feature**
 ## 🛠️ Technology Stack
 
-- **Frontend:** React, Vite, Framer Motion, Styled Components, Tailwind CSS, Zustand
+- **Frontend:** React, Vite, Framer Motion, Styled Components, Tailwind CSS, Zustand, Seleiumn , puppter , playwright
 - **Backend (Upcoming):** FastAPI (Python)
 - **Design:** Glassmorphism, 3D Hover Interactions, Dynamic Gradients
 
