@@ -4,11 +4,10 @@ A comprehensive, AI-powered Web Accessibility Audit Platform built for hackathon
 
 ## 🚀 Features
 
-
 - **Global URL Scanner:** Instantly scan any public webpage for WCAG compliance.
 - **Chrome Extension Support:** Audit internal or authenticated portals directly from your browser.
 - **Visual Issue Explorer:** Dynamically injects interactive 3D markers right over DOM elements to easily locate issues.
-- **Remediation AI:** Fix accessibility violations swiftly via an Intercom-style chatbot that auto-generates copy-pasteable HTML/React fixes.
+- **Remediation AI:** Fix accessibility violations swiftly via an Intercom-style chatbot that auto-generates copy-pasteable HTML/React fixes via github serach api 
 - **Interactive Reports:** Track your accessibility scores gracefully over time using a premium glassmorphic dashboard.
 --**Added the progress tracking feature**
 ## 🛠️ Technology Stack
