@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=420, initial-scale=1.0" />
+  <title>AccessiScan</title>
+  <link rel="stylesheet" href="popup.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- ── Header ───────────────────────────────────────── -->
+  <header id="header">
+    <div class="logo-row">
+      <span class="logo-icon">♿</span>
+      <h1>AccessiScan</h1>
+    </div>
+    <p class="tagline">WCAG 2.2 Accessibility Auditor</p>
+  </header>
+
+  <!-- ── Scan Panel ───────────────────────────────────── -->
+  <section id="scan-panel">
+    <div class="url-bar" id="url-bar">
+      <span class="url-icon">🌐</span>
+      <span id="current-url" class="url-text">Detecting page…</span>
+    </div>
+    <button id="scan-btn" class="btn-primary">
+      <span class="btn-icon">🔍</span> Scan This Page
+    </button>
+  </section>
+
+  <!-- ── Loading ──────────────────────────────────────── -->
+  <section id="loading-panel" class="hidden">
+    <div class="spinner"></div>
+    <p class="loading-text">Scanning for accessibility issues…</p>
+    <p class="loading-sub">This may take 10-20 seconds</p>
+  </section>
+
+  <!-- ── Results ──────────────────────────────────────── -->
+  <section id="results-panel" class="hidden">
+    <!-- Score Ring -->
+    <!-- Audit Summary -->
+    <div class="summary-bar">
+      <div class="summary-stats">
+        <span class="summary-icon">📊</span>
+        <div class="summary-text">
+          <span class="issue-count" id="issue-count">0 issues found</span>
+          <span class="summary-subtext">WCAG 2.2 Audit Results</span>
+        </div>
+      </div>
+      <div class="summary-actions">
+        <button id="download-btn" class="btn-summary-action" title="Download PDF Report">
+          <span>📥</span> Download PDF
+        </button>
+      </div>
+    </div>
+
+    <div class="issues-header">
+      <div class="action-row">
+        <h2>Issues Found</h2>
+        <button id="highlight-all-btn" class="btn-highlight">🎯 Highlight All on Page</button>
+      </div>
+      <div class="filter-pills">
+        <button class="pill active" data-filter="all">All</button>
+        <button class="pill" data-filter="critical">Critical</button>
+        <button class="pill" data-filter="serious">Serious</button>
+        <button class="pill" data-filter="moderate">Moderate</button>
+        <button class="pill" data-filter="minor">Minor</button>
+      </div>
+    </div>
+    <div id="issues-list" class="issues-list"></div>
+  </section>
+
+  <!-- ── Error ────────────────────────────────────────── -->
+  <section id="error-panel" class="hidden">
+    <div class="error-card">
+      <span class="error-icon">⚠️</span>
+      <p class="error-msg" id="error-msg">Something went wrong.</p>
+      <button id="retry-btn" class="btn-secondary">Try Again</button>
+    </div>
+  </section>
+
+  <!-- ── Remediation Modal ────────────────────────────── -->
+  <div id="modal-overlay" class="modal-overlay hidden">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>AI Remediation</h3>
+        <button id="modal-close" class="modal-close">&times;</button>
+      </div>
+      <div id="modal-body" class="modal-body">
+        <div class="modal-spinner-wrap">
+          <div class="spinner small"></div>
+          <p>Generating fix…</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

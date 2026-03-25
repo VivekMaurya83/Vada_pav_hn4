@@ -1,0 +1,3150 @@
+{
+  "wcag_dictionary": [
+    {
+      "rule_id": "wcag_1_1_1",
+      "principle": "Perceivable",
+      "success_criterion": "1.1.1 Non-text Content",
+      "conformance_level": "A",
+      "description": "All non-text content that is presented to the user has a text alternative that serves the equivalent purpose, except for the situations listed in WCAG 2.1.",
+      "act_rules": [
+        {
+          "act_id": "23a2a8",
+          "title": "Image button has non-empty accessible name",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/23a2a8/"
+        },
+        {
+          "act_id": "2eb176",
+          "title": "Image has non-empty accessible name",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/2eb176/"
+        },
+        {
+          "act_id": "4e8ab6",
+          "title": "Element marked as decorative is not exposed",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/4e8ab6/"
+        },
+        {
+          "act_id": "7d6734",
+          "title": "SVG element with explicit role has non-empty accessible name",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/7d6734/"
+        }
+      ],
+      "common_failures": [
+        "Missing alt attribute on <img> elements",
+        "Empty alt attribute on informational images",
+        "Alt text is not equivalent (e.g., 'image.jpg' instead of description)",
+        "SVG icons without aria-label or title",
+        "Image buttons without accessible name",
+        "CSS background images used for meaningful content",
+        "CAPTCHA without alternative text or audio alternative"
+      ],
+      "techniques": {
+        "sufficient": [
+          "H37",
+          "H36",
+          "H24",
+          "H2",
+          "ARIA6",
+          "ARIA9",
+          "ARIA10"
+        ],
+        "advisory": [
+          "H45",
+          "H53"
+        ],
+        "failures": [
+          "F3",
+          "F13",
+          "F20",
+          "F30",
+          "F38",
+          "F39",
+          "F65",
+          "F67",
+          "F71",
+          "F72"
+        ]
+      },
+      "impact": "Critical — screen reader users cannot perceive the content of images, charts, icons, or image-based buttons without text alternatives.",
+      "affected_users": [
+        "Blind users",
+        "Low-vision users",
+        "Users with cognitive disabilities"
+      ],
+      "test_procedure": "Inspect each non-text element for a programmatic text alternative. Verify decorative images use alt='' and role='presentation'.",
+      "featherless_prompt_context": "The user provided an HTML element missing text alternatives. Generate an optimized code snippet adding appropriate semantic HTML (like 'alt' tags) or ARIA labels to satisfy WCAG 1.1.1."
+    },
+    {
+      "rule_id": "wcag_1_2_1",
+      "principle": "Perceivable",
+      "success_criterion": "1.2.1 Audio-only and Video-only (Prerecorded)",
+      "conformance_level": "A",
+      "description": "For prerecorded audio-only and prerecorded video-only media, a text or audio alternative is provided, unless the audio or video is itself an alternative for text.",
+      "act_rules": [
+        {
+          "act_id": "fd26cf",
+          "title": "Audio element content has text alternative",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/fd26cf/"
+        },
+        {
+          "act_id": "ac7dc6",
+          "title": "Video element visual-only content has accessible alternative",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/ac7dc6/"
+        }
+      ],
+      "common_failures": [
+        "Podcast or audio clip without a transcript",
+        "Silent promotional video without a text description",
+        "Audio with only a title and no content transcript",
+        "Video description is too vague to be equivalent"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G158",
+          "G159",
+          "G166"
+        ],
+        "advisory": [
+          "H96"
+        ],
+        "failures": [
+          "F30",
+          "F67"
+        ]
+      },
+      "impact": "Critical for deaf or hard-of-hearing users who cannot access audio content, and blind users who cannot perceive silent video.",
+      "affected_users": [
+        "Deaf users",
+        "Hard-of-hearing users",
+        "Blind users (for video-only)"
+      ],
+      "test_procedure": "For each audio-only or video-only element, verify a full text transcript or audio description is accessible nearby or linked.",
+      "featherless_prompt_context": "The user provided a media element (audio/video) lacking an alternative. Generate a semantic HTML snippet incorporating a <track> element or adjacent text transcript container to satisfy WCAG 1.2.1."
+    },
+    {
+      "rule_id": "wcag_1_2_2",
+      "principle": "Perceivable",
+      "success_criterion": "1.2.2 Captions (Prerecorded)",
+      "conformance_level": "A",
+      "description": "Captions are provided for all prerecorded audio content in synchronized media, except when the media is a media alternative for text and is clearly labeled as such.",
+      "act_rules": [
+        {
+          "act_id": "f51b46",
+          "title": "Video element auditory content has captions",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/f51b46/"
+        }
+      ],
+      "common_failures": [
+        "Video does not have captions",
+        "Captions are auto-generated and uncorrected",
+        "Captions do not include speaker identification",
+        "Captions do not represent non-speech audio events (e.g., [applause])"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G93",
+          "G87",
+          "H95"
+        ],
+        "advisory": [],
+        "failures": [
+          "F8",
+          "F75",
+          "F74"
+        ]
+      },
+      "impact": "Critical for deaf users who depend on synchronized captions to follow video content.",
+      "affected_users": [
+        "Deaf users",
+        "Hard-of-hearing users",
+        "Users in noise-sensitive environments"
+      ],
+      "test_procedure": "Play the video and verify captions are synchronized, accurate, and include non-speech sounds and speaker identification.",
+      "featherless_prompt_context": "The user provided a <video> element without captions. Generate an HTML snippet adding a <track kind='captions'> element pointing to a valid VTT file to satisfy WCAG 1.2.2."
+    },
+    {
+      "rule_id": "wcag_1_2_3",
+      "principle": "Perceivable",
+      "success_criterion": "1.2.3 Audio Description or Media Alternative (Prerecorded)",
+      "conformance_level": "A",
+      "description": "An alternative for time-based media or an audio description of prerecorded video content is provided for synchronized media, except when the media is a media alternative for text.",
+      "act_rules": [
+        {
+          "act_id": "1ea59c",
+          "title": "Video element visual content has audio description",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/1ea59c/"
+        }
+      ],
+      "common_failures": [
+        "Video has meaningful visuals not described in the soundtrack",
+        "No link to a text alternative for the video",
+        "Audio description track exists but is not linked via <track>"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G69",
+          "G78",
+          "G173",
+          "G8"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "impact": "Critical for blind and low-vision users who cannot see on-screen actions, text overlays, or visual transitions in video.",
+      "affected_users": [
+        "Blind users",
+        "Low-vision users"
+      ],
+      "test_procedure": "Check if the video soundtrack describes all meaningful visual content. If not, verify an audio description track or full text alternative is available.",
+      "featherless_prompt_context": "The user provided a <video> element without an audio description. Generate an HTML snippet linking an audio description track using <track kind='descriptions'> to satisfy WCAG 1.2.3."
+    },
+    {
+      "rule_id": "wcag_1_2_4",
+      "principle": "Perceivable",
+      "success_criterion": "1.2.4 Captions (Live)",
+      "conformance_level": "AA",
+      "description": "Captions are provided for all live audio content in synchronized media.",
+      "act_rules": [],
+      "common_failures": [
+        "Live broadcast streams with no real-time captions",
+        "Webinars or video calls without live captioning service",
+        "Live news streams without captions",
+        "Auto-generated live captions that are so inaccurate they are not equivalent"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G9",
+          "G87",
+          "G93"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "impact": "Critical for deaf and hard-of-hearing users who cannot access live audio content such as broadcasts, webinars, or live events.",
+      "affected_users": [
+        "Deaf users",
+        "Hard-of-hearing users",
+        "Users in noise-sensitive environments"
+      ],
+      "test_procedure": "During a live broadcast or event, verify that synchronized captions appear with acceptable accuracy and latency. Auto-generated captions alone are typically insufficient unless accuracy is verified.",
+      "featherless_prompt_context": "The user has a live streaming media element without captions. Generate an HTML snippet referencing a live caption track and describe the server-side CART (Communication Access Realtime Translation) or live ASR captioning integration needed to satisfy WCAG 1.2.4."
+    },
+    {
+      "rule_id": "wcag_1_2_5",
+      "principle": "Perceivable",
+      "success_criterion": "1.2.5 Audio Description (Prerecorded)",
+      "conformance_level": "AA",
+      "description": "Audio description is provided for all prerecorded video content in synchronized media.",
+      "act_rules": [
+        {
+          "act_id": "1ea59c",
+          "title": "Video element visual content has audio description",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/1ea59c/"
+        }
+      ],
+      "common_failures": [
+        "Prerecorded video has meaningful visuals not described in the audio track",
+        "Audio description track exists but is not linked via <track kind='descriptions'>",
+        "Extended audio description is needed but not provided",
+        "Audio description is provided via a separate URL only, without an obvious link"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G78",
+          "G173",
+          "G8",
+          "H96"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "impact": "Critical for blind and low-vision users who depend on spoken descriptions of on-screen visual actions, text overlays, and scene changes.",
+      "affected_users": [
+        "Blind users",
+        "Low-vision users"
+      ],
+      "test_procedure": "Watch the video with eyes closed and verify the audio track (dialogue + description) fully conveys all meaningful visual information. Alternatively confirm a <track kind='descriptions'> element is present and links to a valid VTT description file.",
+      "featherless_prompt_context": "The user has a prerecorded <video> without an audio description track. Generate an HTML snippet adding a <track kind='descriptions' src='description.vtt'> element and explain the VTT format required to satisfy WCAG 1.2.5."
+    },
+    {
+      "rule_id": "wcag_1_2_6",
+      "principle": "Perceivable",
+      "success_criterion": "1.2.6 Sign Language (Prerecorded)",
+      "conformance_level": "AAA",
+      "description": "Sign language interpretation is provided for all prerecorded audio content in synchronized media.",
+      "act_rules": [],
+      "common_failures": [
+        "Prerecorded video has no sign language interpretation track or inset",
+        "Sign language video is provided but not synchronised with the main video",
+        "Sign language interpreter is too small or poorly lit to follow"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G54",
+          "G81"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "impact": "Critical for deaf users whose primary language is a sign language and who have limited proficiency in written text.",
+      "affected_users": [
+        "Deaf users who use sign language as their primary language"
+      ],
+      "test_procedure": "Verify a sign language interpretation video track or picture-in-picture inset is provided and is synchronised with the audio content.",
+      "featherless_prompt_context": "The user has a prerecorded video without sign language interpretation. Describe how to embed a synchronised sign language video inset and generate the HTML structure to satisfy WCAG 1.2.6."
+    },
+    {
+      "rule_id": "wcag_1_2_7",
+      "principle": "Perceivable",
+      "success_criterion": "1.2.7 Extended Audio Description (Prerecorded)",
+      "conformance_level": "AAA",
+      "description": "Where pauses in foreground audio are insufficient to allow audio descriptions to convey the sense of the video, extended audio description is provided for all prerecorded video content in synchronized media.",
+      "act_rules": [],
+      "common_failures": [
+        "Video has continuous dialogue with no natural pauses for audio description",
+        "Standard audio description is truncated because pauses are too short",
+        "Extended audio description is not offered even when standard description is inadequate"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G8"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "impact": "Critical for blind users watching content-dense videos where the standard audio description cannot fit all visual information into natural pauses.",
+      "affected_users": [
+        "Blind users",
+        "Low-vision users"
+      ],
+      "test_procedure": "Identify videos where pauses are too short for standard audio description. Verify an extended description version is provided that pauses the video to allow full description.",
+      "featherless_prompt_context": "The user's video has continuous audio leaving no room for standard description. Explain the extended audio description technique and generate HTML to provide an extended-description version link to satisfy WCAG 1.2.7."
+    },
+    {
+      "rule_id": "wcag_1_2_8",
+      "principle": "Perceivable",
+      "success_criterion": "1.2.8 Media Alternative (Prerecorded)",
+      "conformance_level": "AAA",
+      "description": "An alternative for time-based media is provided for all prerecorded synchronised media and for all prerecorded video-only media.",
+      "act_rules": [],
+      "common_failures": [
+        "No full text transcript provided for prerecorded synchronised media",
+        "Transcript omits speaker identification or non-speech audio events",
+        "Transcript is paywalled or behind a separate login"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G69",
+          "G58",
+          "G159"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "impact": "Serious for deaf-blind users who access content via braille displays and require a full text alternative for all time-based media.",
+      "affected_users": [
+        "Deaf-blind users",
+        "Deaf users",
+        "Users who prefer reading over watching"
+      ],
+      "test_procedure": "Verify a full text transcript is available for every piece of synchronised media, covering all dialogue, speaker identification, and significant non-speech sounds.",
+      "featherless_prompt_context": "The user has synchronised media without a full text transcript. Generate an HTML snippet with a linked or collapsible transcript section containing a complete text alternative to satisfy WCAG 1.2.8."
+    },
+    {
+      "rule_id": "wcag_1_2_9",
+      "principle": "Perceivable",
+      "success_criterion": "1.2.9 Audio-only (Live)",
+      "conformance_level": "AAA",
+      "description": "An alternative for time-based media that presents equivalent information for live audio-only content is provided.",
+      "act_rules": [],
+      "common_failures": [
+        "Live radio stream or audio webcast with no real-time text alternative",
+        "Live podcast with no CART (Communication Access Realtime Translation) feed",
+        "Live audio transcript is delayed by more than a few seconds making it unusable"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G151",
+          "G150",
+          "G157"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "impact": "Critical for deaf and hard-of-hearing users who cannot access live audio-only content such as radio or live audio streams.",
+      "affected_users": [
+        "Deaf users",
+        "Hard-of-hearing users"
+      ],
+      "test_procedure": "During a live audio-only broadcast, verify a real-time text alternative (e.g., CART transcript) is available and updated with acceptable latency.",
+      "featherless_prompt_context": "The user has a live audio-only stream without a text alternative. Describe CART integration options and generate HTML for embedding a live transcript feed alongside the audio player to satisfy WCAG 1.2.9."
+    },
+    {
+      "rule_id": "wcag_1_3_1",
+      "principle": "Perceivable",
+      "success_criterion": "1.3.1 Info and Relationships",
+      "conformance_level": "A",
+      "description": "Information, structure, and relationships conveyed through presentation can be programmatically determined or are available in text.",
+      "act_rules": [
+        {
+          "act_id": "674b10",
+          "title": "ARIA attribute is defined in WAI-ARIA",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/674b10/"
+        },
+        {
+          "act_id": "d0f69e",
+          "title": "Table header cell has assigned cells",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/d0f69e/"
+        },
+        {
+          "act_id": "a25f45",
+          "title": "Headers attribute specified on a cell refers to cells in the same table",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/a25f45/"
+        }
+      ],
+      "common_failures": [
+        "Data tables without <th> or scope attributes",
+        "Using visual-only formatting (bold/color) to imply structure",
+        "Form labels associated only by proximity, not programmatically",
+        "Custom heading styled with CSS but not using <h1>–<h6>",
+        "List items not wrapped in <ul>, <ol>, or <dl>",
+        "Invalid or undefined ARIA attributes"
+      ],
+      "techniques": {
+        "sufficient": [
+          "ARIA11",
+          "G115",
+          "H49",
+          "H51",
+          "H63",
+          "H71",
+          "H85"
+        ],
+        "advisory": [
+          "C22"
+        ],
+        "failures": [
+          "F2",
+          "F33",
+          "F34",
+          "F42",
+          "F43",
+          "F46",
+          "F48",
+          "F62",
+          "F68",
+          "F87",
+          "F90",
+          "F91",
+          "F92"
+        ]
+      },
+      "impact": "Serious — screen readers cannot understand the logical layout of tables, forms, and ARIA-based widgets when semantic structure is missing.",
+      "affected_users": [
+        "Blind users",
+        "Low-vision users",
+        "Users with cognitive disabilities"
+      ],
+      "test_procedure": "Examine HTML source for semantic elements. Validate that tables use <th> with scope, forms use <label for=>, and no structural meaning is conveyed through CSS alone.",
+      "featherless_prompt_context": "The user provided HTML with broken semantic relationships (like detached table headers or invalid ARIA). Generate a corrected HTML snippet establishing proper programmatic relationships (e.g., matching 'id' and 'headers' attributes) to satisfy WCAG 1.3.1."
+    },
+    {
+      "rule_id": "wcag_1_3_2",
+      "principle": "Perceivable",
+      "success_criterion": "1.3.2 Meaningful Sequence",
+      "conformance_level": "A",
+      "description": "If the sequence in which content is presented affects its meaning, a correct reading sequence can be programmatically determined.",
+      "act_rules": [],
+      "common_failures": [
+        "Content laid out with CSS absolute positioning in a different DOM order than visual order",
+        "Using HTML tables for layout, creating a confusing reading sequence",
+        "JavaScript dynamically inserts content in a location that differs from its visual position"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G57",
+          "H34",
+          "H56",
+          "C6",
+          "C8",
+          "C27"
+        ],
+        "advisory": [],
+        "failures": [
+          "F34",
+          "F33",
+          "F32",
+          "F49"
+        ]
+      },
+      "impact": "Serious — screen readers read content in DOM order, which may be completely different from the visual order when CSS positioning is misused.",
+      "affected_users": [
+        "Blind users",
+        "Low-vision users using linearized content"
+      ],
+      "test_procedure": "Disable CSS and verify the content still reads in a logical order that preserves meaning.",
+      "featherless_prompt_context": "The user has content that displays visually in one order but exists in the DOM in a different order. Generate corrected HTML/CSS that aligns DOM reading sequence with visual order to satisfy WCAG 1.3.2."
+    },
+    {
+      "rule_id": "wcag_1_3_3",
+      "principle": "Perceivable",
+      "success_criterion": "1.3.3 Sensory Characteristics",
+      "conformance_level": "A",
+      "description": "Instructions for understanding and operating content do not rely solely on sensory characteristics of components such as shape, color, size, visual location, orientation, or sound.",
+      "act_rules": [],
+      "common_failures": [
+        "Instructions say 'click the green button' without naming the button",
+        "Instructions say 'see the diagram on the right' without describing it",
+        "Error messages say 'the field highlighted in red is required'"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G96"
+        ],
+        "advisory": [],
+        "failures": [
+          "F14",
+          "F26"
+        ]
+      },
+      "impact": "Critical for users who are colorblind, blind, or deaf, who cannot rely on sensory cues alone.",
+      "affected_users": [
+        "Colorblind users",
+        "Blind users",
+        "Deaf users"
+      ],
+      "test_procedure": "Check all instructions for sensory-only references. Verify each reference includes a non-sensory identifier (text label, location name, etc.).",
+      "featherless_prompt_context": "The user has instructions that rely on color or shape alone to identify UI elements. Generate revised copy and HTML that adds non-sensory labels to satisfy WCAG 1.3.3."
+    },
+    {
+      "rule_id": "wcag_1_3_4",
+      "principle": "Perceivable",
+      "success_criterion": "1.3.4 Orientation",
+      "conformance_level": "AA",
+      "description": "Content does not restrict its view and operation to a single display orientation, such as portrait or landscape, unless a specific display orientation is essential.",
+      "act_rules": [
+        {
+          "act_id": "b33eff",
+          "title": "Orientation of the page is not restricted using CSS transforms",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/b33eff/"
+        }
+      ],
+      "common_failures": [
+        "CSS or JavaScript locks the viewport to portrait mode",
+        "App uses screen.orientation.lock() without an essential use case",
+        "Content becomes unusable or hidden when rotated"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G214"
+        ],
+        "advisory": [],
+        "failures": [
+          "F97"
+        ]
+      },
+      "impact": "Moderate — users with devices mounted in a fixed orientation (e.g., wheelchair-mounted) cannot rotate to landscape if the page restricts it.",
+      "affected_users": [
+        "Users with motor disabilities using fixed-mounted devices"
+      ],
+      "test_procedure": "Rotate the device or emulate landscape/portrait in DevTools. Verify all content is accessible and functional in both orientations.",
+      "featherless_prompt_context": "The user has CSS that restricts page orientation. Generate corrected CSS removing orientation locks to satisfy WCAG 1.3.4."
+    },
+    {
+      "rule_id": "wcag_1_3_5",
+      "principle": "Perceivable",
+      "success_criterion": "1.3.5 Identify Input Purpose",
+      "conformance_level": "AA",
+      "description": "The purpose of each input field that collects information about the user can be programmatically determined when the input serves a purpose identified in the Input Purposes for User Interface Components section.",
+      "act_rules": [
+        {
+          "act_id": "73f2c2",
+          "title": "Autocomplete attribute has valid value",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/73f2c2/"
+        }
+      ],
+      "common_failures": [
+        "Name, email, phone, or address fields missing autocomplete attributes",
+        "autocomplete='off' used on personal data fields",
+        "Invalid or misspelled autocomplete token values"
+      ],
+      "techniques": {
+        "sufficient": [
+          "H98"
+        ],
+        "advisory": [],
+        "failures": [
+          "F107"
+        ]
+      },
+      "impact": "Serious for users with cognitive disabilities and motor impairments who rely on browsers and password managers to auto-fill personal data.",
+      "affected_users": [
+        "Users with cognitive disabilities",
+        "Users with motor disabilities",
+        "Elderly users"
+      ],
+      "test_procedure": "Inspect form inputs for valid autocomplete tokens. Cross-reference with the WCAG 1.3.5 token list (name, email, tel, street-address, etc.).",
+      "featherless_prompt_context": "The user provided a form input missing purpose identification. Generate a code snippet adding the correct HTML5 'autocomplete' attribute token for the requested input type to satisfy WCAG 1.3.5."
+    },
+    {
+      "rule_id": "wcag_1_3_6",
+      "principle": "Perceivable",
+      "success_criterion": "1.3.6 Identify Purpose",
+      "conformance_level": "AAA",
+      "description": "In content implemented using markup languages, the purpose of user interface components, icons, and regions can be programmatically determined.",
+      "act_rules": [],
+      "common_failures": [
+        "Custom icons have no semantic meaning exposed via ARIA",
+        "Page regions lack landmark roles (main, nav, aside, header, footer)",
+        "UI components use non-standard roles that cannot be mapped by personalisation tools"
+      ],
+      "techniques": {
+        "sufficient": [
+          "ARIA11",
+          "G197"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "impact": "Serious for users with cognitive disabilities who use personalisation tools that rely on semantic purpose to substitute familiar symbols or simplify the interface.",
+      "affected_users": [
+        "Users with cognitive disabilities",
+        "Users using AAC (Augmentative and Alternative Communication) tools"
+      ],
+      "test_procedure": "Inspect all icons and UI regions. Verify each has a programmatically determinable purpose via ARIA roles, landmark elements, or standard HTML semantics.",
+      "featherless_prompt_context": "The user has icons and regions without semantic purpose exposed in markup. Generate HTML with appropriate landmark roles and ARIA attributes to satisfy WCAG 1.3.6."
+    },
+    {
+      "rule_id": "wcag_1_4_1",
+      "principle": "Perceivable",
+      "success_criterion": "1.4.1 Use of Color",
+      "conformance_level": "A",
+      "description": "Color is not used as the only visual means of conveying information, indicating an action, prompting a response, or distinguishing a visual element.",
+      "act_rules": [],
+      "common_failures": [
+        "Required form fields indicated only by a red border",
+        "Links distinguished from surrounding text only by color",
+        "Charts use only color to differentiate data series",
+        "Error states conveyed only through red text"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G14",
+          "G111",
+          "G182",
+          "G183",
+          "G205",
+          "SC1.4.1-css-background-color"
+        ],
+        "advisory": [
+          "C15"
+        ],
+        "failures": [
+          "F13",
+          "F73",
+          "F81"
+        ]
+      },
+      "impact": "Serious — colorblind users and users with low vision may completely miss information conveyed only by color differences.",
+      "affected_users": [
+        "Colorblind users",
+        "Low-vision users",
+        "Users on monochrome displays"
+      ],
+      "test_procedure": "Convert the page to grayscale (DevTools or browser extension) and verify all information and distinctions remain perceptible.",
+      "featherless_prompt_context": "The user is using color alone to distinguish UI states. Generate HTML/CSS that adds a secondary indicator (icon, pattern, underline, text label) to satisfy WCAG 1.4.1."
+    },
+    {
+      "rule_id": "wcag_1_4_2",
+      "principle": "Perceivable",
+      "success_criterion": "1.4.2 Audio Control",
+      "conformance_level": "A",
+      "description": "If any audio on a web page plays automatically for more than 3 seconds, either a mechanism is available to pause or stop the audio, or a mechanism is available to control audio volume independently from the overall system volume.",
+      "act_rules": [],
+      "common_failures": [
+        "Background music auto-plays on page load with no pause control",
+        "Video auto-plays with audio and the only control is system volume",
+        "Audio advertisement plays automatically with no stop mechanism",
+        "Audio plays for more than 3 seconds before any control is reachable via keyboard"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G60",
+          "G170",
+          "G171"
+        ],
+        "advisory": [],
+        "failures": [
+          "F23"
+        ]
+      },
+      "impact": "Critical for screen reader users whose speech output is drowned out by auto-playing audio, and for users with cognitive or attention disorders.",
+      "affected_users": [
+        "Screen reader users",
+        "Users with cognitive disabilities",
+        "Users with attention disorders"
+      ],
+      "test_procedure": "Load the page and check if any audio plays automatically beyond 3 seconds. Verify a clearly labelled pause/stop control or independent volume control is present and is the first focusable element on the page or reachable within 3 keystrokes.",
+      "featherless_prompt_context": "The user has auto-playing background audio with no control. Generate an HTML/JS snippet adding an accessible play/pause toggle button as the first interactive element on the page to satisfy WCAG 1.4.2."
+    },
+    {
+      "rule_id": "wcag_1_4_3",
+      "principle": "Perceivable",
+      "success_criterion": "1.4.3 Contrast (Minimum)",
+      "conformance_level": "AA",
+      "description": "The visual presentation of text and images of text has a contrast ratio of at least 4.5:1, except for large text (3:1), incidental text, or logotypes.",
+      "act_rules": [
+        {
+          "act_id": "afw4f7",
+          "title": "Text has minimum contrast",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/afw4f7/"
+        }
+      ],
+      "common_failures": [
+        "Light grey text on white backgrounds",
+        "Placeholder text with insufficient contrast",
+        "Disabled element text that is unreadable",
+        "Colored text on similarly-colored backgrounds",
+        "Text overlaid on semi-transparent images"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G18",
+          "G145",
+          "G148",
+          "G174"
+        ],
+        "advisory": [
+          "G156"
+        ],
+        "failures": [
+          "F24",
+          "F83"
+        ]
+      },
+      "impact": "Critical for users with low vision, color blindness, or those in high-glare environments.",
+      "affected_users": [
+        "Low-vision users",
+        "Colorblind users",
+        "Elderly users",
+        "Users in bright ambient light"
+      ],
+      "contrast_ratios": {
+        "normal_text_aa": "4.5:1",
+        "large_text_aa": "3:1",
+        "normal_text_aaa": "7:1",
+        "large_text_aaa": "4.5:1",
+        "large_text_definition": "18pt (24px) normal weight or 14pt (18.67px) bold"
+      },
+      "test_procedure": "Use a contrast analyzer tool (e.g., WebAIM Contrast Checker) with the exact foreground/background hex values. Test all text states including hover and focus.",
+      "featherless_prompt_context": "The user provided CSS with a text foreground and background color combination that fails contrast minimums. Generate contrast-compliant CSS modifying the hex codes to reach a 4.5:1 ratio to satisfy WCAG 1.4.3."
+    },
+    {
+      "rule_id": "wcag_1_4_4",
+      "principle": "Perceivable",
+      "success_criterion": "1.4.4 Resize Text",
+      "conformance_level": "AA",
+      "description": "Text can be resized without assistive technology up to 200 percent without loss of content or functionality.",
+      "act_rules": [],
+      "common_failures": [
+        "Viewport meta tag prevents user scaling",
+        "Fixed pixel heights on containers clip text at larger sizes",
+        "Text uses px units that don't scale with browser font size",
+        "Content overflows or overlaps at 200% zoom"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G142",
+          "G178",
+          "G179",
+          "SCR34",
+          "C12",
+          "C13",
+          "C14",
+          "C17",
+          "C20",
+          "C22"
+        ],
+        "advisory": [],
+        "failures": [
+          "F69",
+          "F80",
+          "F94"
+        ]
+      },
+      "impact": "Serious — users with low vision who increase browser font size or zoom must be able to use all content without horizontal scrolling or content clipping.",
+      "affected_users": [
+        "Low-vision users",
+        "Elderly users"
+      ],
+      "test_procedure": "Zoom the browser to 200% and verify no text is cut off, no horizontal scrollbar appears for vertical content, and all functionality remains operable.",
+      "featherless_prompt_context": "The user has a viewport meta tag with user-scalable=no or CSS with fixed-height containers that clip text. Generate corrected code allowing text resize to 200% to satisfy WCAG 1.4.4."
+    },
+    {
+      "rule_id": "wcag_1_4_5",
+      "principle": "Perceivable",
+      "success_criterion": "1.4.5 Images of Text",
+      "conformance_level": "AA",
+      "description": "If the technologies being used can achieve the visual presentation, text is used to convey information rather than images of text, except for customizable and essential images of text.",
+      "act_rules": [],
+      "common_failures": [
+        "Logos or banners contain text rendered as a JPEG or PNG",
+        "Infographic body text is baked into an image",
+        "Charts with axis labels embedded in the image rather than in HTML",
+        "Screenshots of code or terminal output used as primary content"
+      ],
+      "techniques": {
+        "sufficient": [
+          "C22",
+          "C30",
+          "G140"
+        ],
+        "advisory": [
+          "C12",
+          "C13",
+          "C14"
+        ],
+        "failures": []
+      },
+      "impact": "Serious — images of text cannot be resized, recoloured, or adapted by user stylesheets, harming low-vision and dyslexic users.",
+      "affected_users": [
+        "Low-vision users",
+        "Users with dyslexia",
+        "Users relying on custom stylesheets"
+      ],
+      "exceptions": [
+        "Logotypes (company name in brand font)",
+        "Images of text where the visual presentation is essential to the information conveyed"
+      ],
+      "test_procedure": "Inspect content areas for images that contain text. Verify the same information is available as real HTML text, or confirm it falls under a defined exception (logotype or essential).",
+      "featherless_prompt_context": "The user is using an image to display a text heading or label. Generate an HTML/CSS snippet replacing the image of text with real HTML text styled to achieve the same visual appearance, satisfying WCAG 1.4.5."
+    },
+    {
+      "rule_id": "wcag_1_4_6",
+      "principle": "Perceivable",
+      "success_criterion": "1.4.6 Contrast (Enhanced)",
+      "conformance_level": "AAA",
+      "description": "The visual presentation of text and images of text has a contrast ratio of at least 7:1, except for large text (4.5:1), incidental text, and logotypes.",
+      "act_rules": [],
+      "common_failures": [
+        "Body text with a contrast ratio between 4.5:1 and 7:1",
+        "Large text with a contrast ratio between 3:1 and 4.5:1",
+        "Placeholder or hint text below 7:1 contrast"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G17",
+          "G148",
+          "G174"
+        ],
+        "advisory": [],
+        "failures": [
+          "F24",
+          "F83"
+        ]
+      },
+      "contrast_ratios": {
+        "normal_text_aaa": "7:1",
+        "large_text_aaa": "4.5:1",
+        "large_text_definition": "18pt (24px) normal or 14pt (18.67px) bold"
+      },
+      "impact": "Critical for users with severe low vision who require higher contrast than the AA minimum to read text.",
+      "affected_users": [
+        "Users with severe low vision",
+        "Elderly users",
+        "Users in very bright environments"
+      ],
+      "test_procedure": "Measure contrast ratios using a colour contrast analyser. Verify normal text meets 7:1 and large text meets 4.5:1.",
+      "featherless_prompt_context": "The user needs AAA contrast compliance. Generate CSS with foreground and background colour combinations that achieve at least 7:1 contrast for normal text to satisfy WCAG 1.4.6."
+    },
+    {
+      "rule_id": "wcag_1_4_7",
+      "principle": "Perceivable",
+      "success_criterion": "1.4.7 Low or No Background Audio",
+      "conformance_level": "AAA",
+      "description": "For prerecorded audio-only content that contains primarily speech in the foreground, is not an audio CAPTCHA or audio logo, and is not vocalization intended to be primarily musical expression, background audio is either absent or at least 20 dB lower than the foreground speech.",
+      "act_rules": [],
+      "common_failures": [
+        "Podcast with background music at the same volume as the narrator",
+        "Educational audio with background sounds louder than 20 dB below speech",
+        "Interview recording with ambient noise competing with speech"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G56"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "impact": "Serious for users with hearing loss or auditory processing disorders who struggle to separate speech from background noise.",
+      "affected_users": [
+        "Users with hearing loss",
+        "Users with auditory processing disorders",
+        "Elderly users"
+      ],
+      "test_procedure": "Analyse the audio file using audio editing software. Verify background audio is at least 20 dB lower than foreground speech, or is absent entirely.",
+      "featherless_prompt_context": "The user's audio content has background noise too close in volume to the speech. Provide guidance on audio production techniques and HTML controls that allow users to access a speech-only version to satisfy WCAG 1.4.7."
+    },
+    {
+      "rule_id": "wcag_1_4_8",
+      "principle": "Perceivable",
+      "success_criterion": "1.4.8 Visual Presentation",
+      "conformance_level": "AAA",
+      "description": "For the visual presentation of blocks of text, a mechanism is available to achieve: foreground and background colours chosen by the user; width no more than 80 characters; text not fully justified; line spacing at least 1.5 within paragraphs and paragraph spacing at least 1.5 times the line spacing; text resizable up to 200% without assistive technology.",
+      "act_rules": [],
+      "common_failures": [
+        "Text is full-justified causing uneven word spacing (rivers of white space)",
+        "No mechanism to change text and background colours",
+        "Content columns wider than 80 characters with no way to reduce width",
+        "Line spacing locked below 1.5 via !important"
+      ],
+      "techniques": {
+        "sufficient": [
+          "C23",
+          "C25",
+          "G156",
+          "G169",
+          "G175",
+          "G188",
+          "G204"
+        ],
+        "advisory": [],
+        "failures": [
+          "F24",
+          "F88"
+        ]
+      },
+      "requirements": {
+        "foreground_background_choice": "User can select foreground and background colours",
+        "max_width": "No more than 80 characters or glyphs per line",
+        "no_full_justification": "Text is not fully justified",
+        "line_spacing": "At least 1.5 within paragraphs",
+        "paragraph_spacing": "At least 1.5x the line spacing",
+        "resize": "Text resizable to 200% without AT"
+      },
+      "impact": "Serious for users with dyslexia and cognitive disabilities who need control over text presentation.",
+      "affected_users": [
+        "Users with dyslexia",
+        "Users with cognitive disabilities",
+        "Users with low vision"
+      ],
+      "test_procedure": "Verify text alignment is not justify. Check column widths, line spacing, and that a mechanism (theme switcher or CSS override) allows users to set custom colours.",
+      "featherless_prompt_context": "The user's body text uses text-align:justify and has no colour customisation mechanism. Generate CSS removing full justification, constraining line width, and adding appropriate spacing to satisfy WCAG 1.4.8."
+    },
+    {
+      "rule_id": "wcag_1_4_9",
+      "principle": "Perceivable",
+      "success_criterion": "1.4.9 Images of Text (No Exception)",
+      "conformance_level": "AAA",
+      "description": "Images of text are only used for pure decoration or where a particular presentation of text is essential to the information being conveyed.",
+      "act_rules": [],
+      "common_failures": [
+        "Navigation labels rendered as images with no essential reason",
+        "Headings or pull-quotes saved as PNGs instead of HTML text",
+        "Stylised text in banners that could be replicated with CSS"
+      ],
+      "techniques": {
+        "sufficient": [
+          "C22",
+          "C30",
+          "G140"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "impact": "Serious — stricter than 1.4.5, allowing no exceptions except pure decoration or essential presentation.",
+      "affected_users": [
+        "Low-vision users",
+        "Users with dyslexia",
+        "Users relying on custom stylesheets"
+      ],
+      "exceptions": [
+        "Pure decoration",
+        "Essential: where the specific visual rendering is essential to convey meaning (e.g., a font specimen)"
+      ],
+      "test_procedure": "Identify all images of text. Verify each is either purely decorative or its specific visual appearance is essential. Replace all others with real HTML text + CSS.",
+      "featherless_prompt_context": "The user is using images of text for non-essential content. Generate HTML/CSS replacing every non-essential image of text with real styled text to satisfy WCAG 1.4.9."
+    },
+    {
+      "rule_id": "wcag_1_4_10",
+      "principle": "Perceivable",
+      "success_criterion": "1.4.10 Reflow",
+      "conformance_level": "AA",
+      "description": "Content can be presented without loss of information or functionality, and without requiring scrolling in two dimensions, at a width equivalent to 320 CSS pixels.",
+      "act_rules": [],
+      "common_failures": [
+        "Fixed-width layouts that require horizontal scrolling at 320px",
+        "Data tables that overflow without a scrollable container",
+        "Images or media with fixed widths wider than the viewport"
+      ],
+      "techniques": {
+        "sufficient": [
+          "C31",
+          "C32",
+          "C33",
+          "C38",
+          "SCR34",
+          "G206"
+        ],
+        "advisory": [],
+        "failures": [
+          "F102"
+        ]
+      },
+      "impact": "Serious — users who zoom to 400% (equivalent to 320px viewport width) need to avoid two-dimensional scrolling.",
+      "affected_users": [
+        "Low-vision users who zoom to 400%",
+        "Mobile users"
+      ],
+      "test_procedure": "Set the viewport to 320px wide and verify all content reflows into a single column without horizontal scrolling (except for content that inherently requires 2D layout, like data tables or maps).",
+      "featherless_prompt_context": "The user has a fixed-width layout that breaks at 320px viewport. Generate responsive CSS using flexible units and media queries to satisfy WCAG 1.4.10."
+    },
+    {
+      "rule_id": "wcag_1_4_11",
+      "principle": "Perceivable",
+      "success_criterion": "1.4.11 Non-text Contrast",
+      "conformance_level": "AA",
+      "description": "The visual presentation of UI components and graphical objects has a contrast ratio of at least 3:1 against adjacent color(s).",
+      "act_rules": [],
+      "common_failures": [
+        "Form input borders are too low contrast against the background",
+        "Icon buttons without background have insufficient contrast",
+        "Charts or graphs with low-contrast lines or bars",
+        "Focus indicators below 3:1 contrast"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G195",
+          "G207",
+          "G209"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "impact": "Serious — users with low vision may not be able to identify form inputs, buttons, icons, or chart elements.",
+      "affected_users": [
+        "Low-vision users",
+        "Colorblind users"
+      ],
+      "contrast_ratios": {
+        "ui_components": "3:1",
+        "graphical_objects": "3:1"
+      },
+      "test_procedure": "Measure the contrast ratio of UI control boundaries (e.g., checkbox border vs background). Use a contrast tool with the component's edge color and its adjacent background color.",
+      "featherless_prompt_context": "The user has UI components or icons with insufficient non-text contrast. Generate corrected CSS changing border or fill colors to achieve at least 3:1 contrast to satisfy WCAG 1.4.11."
+    },
+    {
+      "rule_id": "wcag_1_4_12",
+      "principle": "Perceivable",
+      "success_criterion": "1.4.12 Text Spacing",
+      "conformance_level": "AA",
+      "description": "No loss of content or functionality occurs by setting: line height to at least 1.5x font size, letter spacing to at least 0.12x font size, word spacing to at least 0.16x font size, and spacing after paragraphs to at least 2x font size.",
+      "act_rules": [
+        {
+          "act_id": "9e45ec",
+          "title": "Important letter spacing in style attributes is wide enough",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/9e45ec/"
+        },
+        {
+          "act_id": "24afc2",
+          "title": "Important line height in style attributes is wide enough",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/24afc2/"
+        },
+        {
+          "act_id": "78fd32",
+          "title": "Important word spacing in style attributes is wide enough",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/78fd32/"
+        }
+      ],
+      "common_failures": [
+        "Inline style uses !important to lock letter-spacing",
+        "Fixed-height containers clip text when line-height is increased",
+        "Overflow: hidden on components that do not account for extra spacing",
+        "word-spacing or letter-spacing forced via !important in stylesheets"
+      ],
+      "techniques": {
+        "sufficient": [
+          "C35",
+          "C36"
+        ],
+        "advisory": [],
+        "failures": [
+          "F104"
+        ]
+      },
+      "spacing_minimums": {
+        "line_height": "1.5x the font size",
+        "letter_spacing": "0.12x the font size",
+        "word_spacing": "0.16x the font size",
+        "paragraph_spacing": "2x the font size"
+      },
+      "impact": "Serious for users with dyslexia and cognitive disabilities who rely on custom user stylesheets or browser extensions to override text spacing.",
+      "affected_users": [
+        "Users with dyslexia",
+        "Users with cognitive disabilities",
+        "Users using custom stylesheets"
+      ],
+      "test_procedure": "Apply a bookmarklet or user stylesheet overriding spacing to the WCAG minimums. Verify no content is clipped, overlapped, or functionally broken.",
+      "featherless_prompt_context": "The user provided CSS that restricts text spacing using '!important'. Generate a corrected CSS snippet removing the strict spacing overrides or adjusting them to meet WCAG 1.4.12 minimums."
+    },
+    {
+      "rule_id": "wcag_1_4_13",
+      "principle": "Perceivable",
+      "success_criterion": "1.4.13 Content on Hover or Focus",
+      "conformance_level": "AA",
+      "description": "Where receiving and then removing pointer hover or keyboard focus triggers additional content to become visible and then hidden, the additional content is dismissible, hoverable, and persistent.",
+      "act_rules": [],
+      "common_failures": [
+        "Tooltip disappears as soon as the pointer moves off the trigger",
+        "Tooltip cannot be dismissed by pressing Escape without moving focus",
+        "Tooltip obscures underlying content and cannot be moved away",
+        "Hoverable content auto-dismisses before the user can read or interact with it"
+      ],
+      "techniques": {
+        "sufficient": [
+          "SCR39"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "requirements": {
+        "dismissible": "The user can dismiss the additional content without moving pointer hover or keyboard focus (e.g., Escape key).",
+        "hoverable": "If a pointer triggered the content, the pointer can be moved over the additional content without it disappearing.",
+        "persistent": "The content remains visible until the user removes hover/focus, dismisses it, or the information is no longer valid."
+      },
+      "impact": "Serious for users with low vision who zoom in and need to move the pointer over tooltip content, and for users with cognitive disabilities who need time to read tooltip text.",
+      "affected_users": [
+        "Low-vision users using zoom",
+        "Users with cognitive disabilities",
+        "Keyboard users"
+      ],
+      "test_procedure": "Trigger all tooltips and popovers via keyboard focus and mouse hover. Verify: (1) Escape dismisses the content, (2) moving the pointer into the tooltip does not close it, (3) the content stays open until intentionally dismissed.",
+      "featherless_prompt_context": "The user's tooltip disappears on mouseout and cannot be accessed via keyboard. Generate an HTML/CSS/JS snippet implementing a hover/focus tooltip that is dismissible, hoverable, and persistent to satisfy WCAG 1.4.13."
+    },
+    {
+      "rule_id": "wcag_2_1_1",
+      "principle": "Operable",
+      "success_criterion": "2.1.1 Keyboard",
+      "conformance_level": "A",
+      "description": "All functionality of the content is operable through a keyboard interface without requiring specific timings for individual keystrokes, except where the underlying function requires input that depends on the path of the user's movement.",
+      "act_rules": [
+        {
+          "act_id": "a1b64e",
+          "title": "Focusable element has no keyboard trap via standard navigation",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/a1b64e/"
+        },
+        {
+          "act_id": "0ssw9k",
+          "title": "Scrollable content can be reached with sequential focus navigation",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/0ssw9k/"
+        }
+      ],
+      "common_failures": [
+        "Custom dropdown or modal traps keyboard focus",
+        "onClick-only handlers without onKeyDown/onKeyPress equivalents",
+        "draggable elements without keyboard alternatives",
+        "Canvas or SVG interactions only available via mouse",
+        "Scrollable region not reachable via Tab key"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G202",
+          "H91",
+          "PDF3",
+          "PDF11",
+          "PDF23",
+          "T2"
+        ],
+        "advisory": [
+          "SCR20",
+          "SCR35"
+        ],
+        "failures": [
+          "F10",
+          "F42",
+          "F54",
+          "F55"
+        ]
+      },
+      "impact": "Critical — blocks all users who rely solely on keyboard navigation, including those with motor disabilities, switch access users, and power keyboard users.",
+      "affected_users": [
+        "Users with motor disabilities",
+        "Switch access users",
+        "Screen reader users",
+        "Power keyboard users"
+      ],
+      "test_procedure": "Navigate the entire page using only Tab, Shift+Tab, Enter, Space, and arrow keys. Verify all interactive elements are reachable and operable.",
+      "featherless_prompt_context": "The user provided an interactive DOM element that traps focus or cannot be reached via keyboard. Generate a modified HTML/JS snippet adding tabindex='0' and necessary keyboard event listeners (Enter/Space) to satisfy WCAG 2.1.1."
+    },
+    {
+      "rule_id": "wcag_2_1_2",
+      "principle": "Operable",
+      "success_criterion": "2.1.2 No Keyboard Trap",
+      "conformance_level": "A",
+      "description": "If keyboard focus can be moved to a component using a keyboard interface, then focus can be moved away from that component using only a keyboard interface.",
+      "act_rules": [
+        {
+          "act_id": "80af7b",
+          "title": "Focusable element has no keyboard trap via standard navigation",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/80af7b/"
+        }
+      ],
+      "common_failures": [
+        "Modal dialog does not return focus on Escape",
+        "Date picker or custom widget captures Tab and never releases",
+        "Embedded iframe traps focus indefinitely",
+        "Third-party widget without a documented focus escape method"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G21",
+          "SCR20"
+        ],
+        "advisory": [],
+        "failures": [
+          "F10"
+        ]
+      },
+      "impact": "Critical — a keyboard trap completely prevents a user from continuing to navigate the page.",
+      "affected_users": [
+        "Users with motor disabilities",
+        "Screen reader users"
+      ],
+      "test_procedure": "Tab into every interactive component. Verify that pressing Escape or following documented instructions always allows the user to move focus away.",
+      "featherless_prompt_context": "The user's modal or widget traps keyboard focus. Generate a JavaScript focus management snippet that constrains focus within the modal but returns it to the trigger element on close, satisfying WCAG 2.1.2."
+    },
+    {
+      "rule_id": "wcag_2_1_3",
+      "principle": "Operable",
+      "success_criterion": "2.1.3 Keyboard (No Exception)",
+      "conformance_level": "AAA",
+      "description": "All functionality of the content is operable through a keyboard interface without requiring specific timings for individual keystrokes.",
+      "act_rules": [],
+      "common_failures": [
+        "Drawing or free-hand input tools without a keyboard-driven alternative mode",
+        "Drag-and-drop interfaces with no keyboard reordering mechanism",
+        "Gesture-only controls on touch interfaces without keyboard equivalents"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G202"
+        ],
+        "advisory": [],
+        "failures": [
+          "F54"
+        ]
+      },
+      "impact": "Critical — stricter than 2.1.1, removing the path-dependent movement exception, requiring all functionality including drawing to be keyboard operable.",
+      "affected_users": [
+        "Users with motor disabilities",
+        "Switch access users",
+        "Keyboard-only users"
+      ],
+      "test_procedure": "Attempt to perform every single function using only keyboard. Verify no functionality — including drawing, resizing, or path-based interaction — requires a pointing device.",
+      "featherless_prompt_context": "The user has drawing or drag interactions with no keyboard alternative. Generate a JavaScript snippet implementing keyboard-driven equivalents (arrow keys for movement, Enter for drop) to satisfy WCAG 2.1.3."
+    },
+    {
+      "rule_id": "wcag_2_1_4",
+      "principle": "Operable",
+      "success_criterion": "2.1.4 Character Key Shortcuts",
+      "conformance_level": "A",
+      "description": "If a keyboard shortcut is implemented in content using only letter, punctuation, number, or symbol characters, then a mechanism is available to turn off, remap, or restrict activation to when the component has focus.",
+      "act_rules": [],
+      "common_failures": [
+        "Single-character shortcut keys active globally that interfere with voice input",
+        "App binds letter keys (e.g., 'f' for favourite) with no way to disable them",
+        "Keyboard shortcuts conflict with screen reader or OS shortcuts",
+        "No settings panel or mechanism to remap or deactivate shortcuts"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G217"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "impact": "Serious for voice input users (e.g., Dragon NaturallySpeaking) where dictating text can accidentally trigger single-key shortcuts.",
+      "affected_users": [
+        "Voice input users",
+        "Users with cognitive disabilities",
+        "Screen reader users"
+      ],
+      "test_procedure": "Identify all single-character keyboard shortcuts. Verify a mechanism exists to: (a) turn them off, (b) remap them to include a modifier key (Ctrl, Alt, etc.), or (c) restrict them to only activate when the relevant component has focus.",
+      "featherless_prompt_context": "The user's application uses single-character keyboard shortcuts globally. Generate a JavaScript snippet implementing a settings toggle to disable or remap these shortcuts to require a modifier key, satisfying WCAG 2.1.4."
+    },
+    {
+      "rule_id": "wcag_2_2_1",
+      "principle": "Operable",
+      "success_criterion": "2.2.1 Timing Adjustable",
+      "conformance_level": "A",
+      "description": "For each time limit that is set by the content, the user can turn off, adjust, or extend the time limit, with specific exceptions for real-time events and essential time limits.",
+      "act_rules": [
+        {
+          "act_id": "bisz58",
+          "title": "Meta element has no refresh delay",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/bisz58/"
+        }
+      ],
+      "common_failures": [
+        "<meta http-equiv='refresh' content='30'> with no warning",
+        "Session timeout with no extension prompt",
+        "Auto-advancing slideshow with no pause control",
+        "Form submission window with a fixed countdown"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G4",
+          "G133",
+          "G198",
+          "G180",
+          "SCR16",
+          "SCR1"
+        ],
+        "advisory": [],
+        "failures": [
+          "F40",
+          "F41",
+          "F58"
+        ]
+      },
+      "impact": "Serious — users with cognitive disabilities, reading impairments, or motor difficulties need extra time and must not be timed out unexpectedly.",
+      "affected_users": [
+        "Users with cognitive disabilities",
+        "Users with motor disabilities",
+        "Screen reader users",
+        "Elderly users"
+      ],
+      "test_procedure": "Identify all time limits. Verify each provides at least one of: turn off, adjust, or extend (at least 10× default time and at least 20 seconds to request extension).",
+      "featherless_prompt_context": "The user provided HTML using a meta refresh tag for a time limit. Generate alternative logic (like a JavaScript prompt allowing the user to extend the session) to satisfy WCAG 2.2.1."
+    },
+    {
+      "rule_id": "wcag_2_2_2",
+      "principle": "Operable",
+      "success_criterion": "2.2.2 Pause, Stop, Hide",
+      "conformance_level": "A",
+      "description": "For moving, blinking, scrolling, or auto-updating information, the user can pause, stop, or hide it, unless the movement is essential.",
+      "act_rules": [],
+      "common_failures": [
+        "Animated carousel with no pause button",
+        "Ticker or marquee scrolling text with no stop mechanism",
+        "Auto-updating news feed with no pause control",
+        "Animated background that cannot be stopped",
+        "Loading spinner or animation that plays indefinitely with no way to disable"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G4",
+          "G11",
+          "G152",
+          "G186",
+          "G191",
+          "SCR22",
+          "SCR33"
+        ],
+        "advisory": [],
+        "failures": [
+          "F16",
+          "F47",
+          "F4",
+          "F50"
+        ]
+      },
+      "impact": "Critical for users with attention disorders, cognitive disabilities, and photosensitive conditions who are distracted or harmed by persistent motion.",
+      "affected_users": [
+        "Users with attention disorders (ADHD)",
+        "Users with cognitive disabilities",
+        "Users with vestibular disorders",
+        "Users with photosensitive epilepsy"
+      ],
+      "test_procedure": "Identify all moving, blinking, scrolling, or auto-updating content. Verify a clearly labelled pause, stop, or hide control is available and operable via keyboard.",
+      "featherless_prompt_context": "The user has an auto-advancing carousel or scrolling ticker without a pause control. Generate an HTML/JS snippet adding an accessible pause/play toggle button that halts and resumes animation to satisfy WCAG 2.2.2."
+    },
+    {
+      "rule_id": "wcag_2_2_3",
+      "principle": "Operable",
+      "success_criterion": "2.2.3 No Timing",
+      "conformance_level": "AAA",
+      "description": "Timing is not an essential part of the event or activity presented by the content, except for non-interactive synchronised media and real-time events.",
+      "act_rules": [],
+      "common_failures": [
+        "Quiz or test with a mandatory countdown timer that cannot be removed",
+        "Auction interface requiring bids within a fixed window",
+        "Any form with a time limit that cannot be turned off entirely"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G5"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "impact": "Critical for users who need unlimited time — those with cognitive disabilities, motor impairments, or reading difficulties.",
+      "affected_users": [
+        "Users with cognitive disabilities",
+        "Users with motor disabilities",
+        "Elderly users"
+      ],
+      "test_procedure": "Verify that no time limits exist in the content except for real-time events or synchronised media.",
+      "featherless_prompt_context": "The user's application has mandatory time limits. Describe how to architect the experience without timing constraints and generate UI that removes all time-dependent mechanics to satisfy WCAG 2.2.3."
+    },
+    {
+      "rule_id": "wcag_2_2_4",
+      "principle": "Operable",
+      "success_criterion": "2.2.4 Interruptions",
+      "conformance_level": "AAA",
+      "description": "Interruptions can be postponed or suppressed by the user, except for interruptions involving an emergency.",
+      "act_rules": [],
+      "common_failures": [
+        "Push notifications or alerts cannot be deferred",
+        "Live chat widgets interrupt the user without a suppression option",
+        "Auto-updating content interrupts the current task with no 'do not disturb' setting"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G75",
+          "G76",
+          "SCR14"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "impact": "Serious for users with attention disorders and cognitive disabilities who are disrupted by unexpected interruptions.",
+      "affected_users": [
+        "Users with ADHD",
+        "Users with cognitive disabilities",
+        "Screen reader users"
+      ],
+      "test_procedure": "Identify all system-initiated interruptions (alerts, notifications, updates). Verify each can be postponed or suppressed by the user.",
+      "featherless_prompt_context": "The user's app has non-suppressible notifications. Generate a JavaScript notification manager with a user-controlled 'do not disturb' toggle to satisfy WCAG 2.2.4."
+    },
+    {
+      "rule_id": "wcag_2_2_5",
+      "principle": "Operable",
+      "success_criterion": "2.2.5 Re-authenticating",
+      "conformance_level": "AAA",
+      "description": "When an authenticated session expires, the user can continue the activity without loss of data after re-authenticating.",
+      "act_rules": [],
+      "common_failures": [
+        "Session timeout clears a partially completed form without warning",
+        "Re-authentication redirects to an empty form losing all entered data",
+        "Shopping cart is cleared after session expiry"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G105",
+          "G181"
+        ],
+        "advisory": [],
+        "failures": [
+          "F12"
+        ]
+      },
+      "impact": "Serious for users who need extended time to complete tasks — data loss after re-authentication is particularly harmful for users with cognitive or motor disabilities.",
+      "affected_users": [
+        "Users with cognitive disabilities",
+        "Users with motor disabilities",
+        "Elderly users"
+      ],
+      "test_procedure": "Allow a session to expire mid-form. Re-authenticate and verify all previously entered data is preserved and the task can be resumed.",
+      "featherless_prompt_context": "The user's app loses form data on session expiry. Generate a JavaScript snippet saving form state to sessionStorage and restoring it after re-authentication to satisfy WCAG 2.2.5."
+    },
+    {
+      "rule_id": "wcag_2_2_6",
+      "principle": "Operable",
+      "success_criterion": "2.2.6 Timeouts",
+      "conformance_level": "AAA",
+      "description": "Users are warned of the duration of any user inactivity that could cause data loss, unless the data is preserved for more than 20 hours when the user does not take any actions.",
+      "act_rules": [],
+      "common_failures": [
+        "Session timeout occurs without any prior warning to the user",
+        "Warning is shown but does not state the exact duration before timeout",
+        "Data is not preserved after timeout and no warning was given"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G198",
+          "G199"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "impact": "Serious for users with cognitive disabilities who may lose track of time and inadvertently let sessions expire, losing work.",
+      "affected_users": [
+        "Users with cognitive disabilities",
+        "Elderly users",
+        "Screen reader users who navigate slowly"
+      ],
+      "test_procedure": "Identify inactivity timeouts. Verify the user is warned of the timeout duration upfront (not just when it is about to expire) unless data is preserved for 20+ hours.",
+      "featherless_prompt_context": "The user's app has an undisclosed inactivity timeout. Generate a UI notification displayed on page load that clearly states the session duration and warns before expiry to satisfy WCAG 2.2.6."
+    },
+    {
+      "rule_id": "wcag_2_3_1",
+      "principle": "Operable",
+      "success_criterion": "2.3.1 Three Flashes or Below Threshold",
+      "conformance_level": "A",
+      "description": "Web pages do not contain anything that flashes more than three times in any one second period, or the flash is below the general and red flash thresholds.",
+      "act_rules": [],
+      "common_failures": [
+        "Animated GIFs or video with rapid flashing sequences",
+        "Loading animations with rapid strobe effects",
+        "JavaScript-driven blinking content exceeding 3 Hz"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G19",
+          "G176"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "impact": "Critical — content flashing faster than 3 Hz can trigger photosensitive epileptic seizures.",
+      "affected_users": [
+        "Users with photosensitive epilepsy"
+      ],
+      "test_procedure": "Use the Photosensitive Epilepsy Analysis Tool (PEAT) to analyze videos and animations for flash rates exceeding the threshold.",
+      "featherless_prompt_context": "The user has a rapidly flashing animation. Generate revised CSS/JS that limits animation to below 3 Hz or provides a prefers-reduced-motion media query to satisfy WCAG 2.3.1."
+    },
+    {
+      "rule_id": "wcag_2_3_2",
+      "principle": "Operable",
+      "success_criterion": "2.3.2 Three Flashes",
+      "conformance_level": "AAA",
+      "description": "Web pages do not contain anything that flashes more than three times in any one second period.",
+      "act_rules": [],
+      "common_failures": [
+        "Any content flashing more than 3 times per second regardless of size or area",
+        "Animations with rapid strobe effects below the general flash threshold but still above 3 Hz"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G19"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "impact": "Critical — stricter than 2.3.1 (removes the threshold exception), ensuring no content flashes more than 3 times per second under any conditions.",
+      "affected_users": [
+        "Users with photosensitive epilepsy",
+        "Users with vestibular disorders"
+      ],
+      "test_procedure": "Use PEAT (Photosensitive Epilepsy Analysis Tool) to verify no content flashes more than 3 times per second, regardless of its size or colour.",
+      "featherless_prompt_context": "The user has flashing content that falls under the 2.3.1 threshold but still flashes more than 3 times per second. Generate CSS or JS limiting the animation rate to at most 3 Hz to satisfy WCAG 2.3.2."
+    },
+    {
+      "rule_id": "wcag_2_3_3",
+      "principle": "Operable",
+      "success_criterion": "2.3.3 Animation from Interactions",
+      "conformance_level": "AAA",
+      "description": "Motion animation triggered by interaction can be disabled, unless the animation is essential to the functionality or the information being conveyed.",
+      "act_rules": [],
+      "common_failures": [
+        "Parallax scrolling effects with no option to disable",
+        "Page transition animations with no reduced-motion support",
+        "Zoom or spin effects on interactive elements ignoring prefers-reduced-motion"
+      ],
+      "techniques": {
+        "sufficient": [
+          "C39"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "impact": "Serious for users with vestibular disorders (e.g., Ménière's disease) for whom motion animations can trigger dizziness, nausea, or migraines.",
+      "affected_users": [
+        "Users with vestibular disorders",
+        "Users with migraines",
+        "Users with cognitive disabilities"
+      ],
+      "test_procedure": "Enable the OS prefers-reduced-motion setting. Verify all non-essential motion animations are disabled or significantly reduced.",
+      "featherless_prompt_context": "The user's site has parallax or transition animations. Generate a CSS media query using prefers-reduced-motion to disable all non-essential motion animations to satisfy WCAG 2.3.3."
+    },
+    {
+      "rule_id": "wcag_2_4_1",
+      "principle": "Operable",
+      "success_criterion": "2.4.1 Bypass Blocks",
+      "conformance_level": "A",
+      "description": "A mechanism is available to bypass blocks of content that are repeated on multiple web pages.",
+      "act_rules": [],
+      "common_failures": [
+        "No skip navigation link before the main content area",
+        "Skip link exists but is not keyboard focusable",
+        "Skip link target anchor is missing from the DOM",
+        "No landmark regions (main, nav, header) for screen reader navigation"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G1",
+          "G123",
+          "G124",
+          "H69",
+          "SCR28"
+        ],
+        "advisory": [
+          "C6"
+        ],
+        "failures": []
+      },
+      "impact": "Serious — keyboard and screen reader users must Tab through every navigation item on every page load without a skip mechanism.",
+      "affected_users": [
+        "Screen reader users",
+        "Keyboard-only users"
+      ],
+      "test_procedure": "Tab to the page. Verify the first focusable element is a visible or visually-hidden 'Skip to main content' link. Activate it and confirm focus moves to main content.",
+      "featherless_prompt_context": "The user's page lacks a skip navigation link. Generate an HTML snippet with a visually-hidden skip link that becomes visible on focus and targets the main content landmark to satisfy WCAG 2.4.1."
+    },
+    {
+      "rule_id": "wcag_2_4_2",
+      "principle": "Operable",
+      "success_criterion": "2.4.2 Page Titled",
+      "conformance_level": "A",
+      "description": "Web pages have titles that describe their topic or purpose.",
+      "act_rules": [
+        {
+          "act_id": "2779a5",
+          "title": "HTML page has non-empty title",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/2779a5/"
+        },
+        {
+          "act_id": "c4a8a4",
+          "title": "HTML page title is descriptive",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/c4a8a4/"
+        }
+      ],
+      "common_failures": [
+        "Missing <title> element entirely",
+        "Empty <title> tag",
+        "Generic title like 'Untitled Document' or 'Page 1'",
+        "Title does not change between pages in a single-page application",
+        "Title duplicates the site name without describing the page"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G88",
+          "H25"
+        ],
+        "advisory": [],
+        "failures": [
+          "F25"
+        ]
+      },
+      "impact": "Serious — screen reader users rely on the page title announced on load to orient themselves; tab users need it to identify browser tabs.",
+      "affected_users": [
+        "Screen reader users",
+        "Users with cognitive disabilities"
+      ],
+      "best_practice_format": "[Page-specific topic] - [Site name] (e.g., 'Contact Us - Acme Corp')",
+      "test_procedure": "Inspect the <head> element. Verify a non-empty <title> exists that uniquely describes the page topic or purpose.",
+      "featherless_prompt_context": "The user provided an HTML document missing a descriptive title. Generate an optimized <title> tag snippet describing the page content to be placed in the <head> to satisfy WCAG 2.4.2."
+    },
+    {
+      "rule_id": "wcag_2_4_3",
+      "principle": "Operable",
+      "success_criterion": "2.4.3 Focus Order",
+      "conformance_level": "A",
+      "description": "If a web page can be navigated sequentially and the navigation sequences affect meaning or operation, focusable components receive focus in an order that preserves meaning and operability.",
+      "act_rules": [
+        {
+          "act_id": "ae943e",
+          "title": "Interactive elements have a sequential focus order that reflects the visual layout",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/ae943e/"
+        }
+      ],
+      "common_failures": [
+        "Positive tabindex values create a separate, confusing focus order",
+        "Modal dialogs that open without moving focus into the dialog",
+        "DOM order differs dramatically from visual layout",
+        "Focus jumps unpredictably after a user action"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G59",
+          "H4",
+          "C27",
+          "SCR26",
+          "SCR27",
+          "SCR37"
+        ],
+        "advisory": [],
+        "failures": [
+          "F44",
+          "F85"
+        ]
+      },
+      "impact": "Serious — a confusing focus order disorients keyboard and screen reader users who depend on logical sequential navigation.",
+      "affected_users": [
+        "Screen reader users",
+        "Keyboard-only users"
+      ],
+      "test_procedure": "Tab through the page and verify focus order follows the visual and logical reading sequence. Check that no positive tabindex values are used.",
+      "featherless_prompt_context": "The user's page uses positive tabindex values that disrupt natural focus order. Generate corrected HTML removing positive tabindexes and reorganizing DOM order to match visual order, satisfying WCAG 2.4.3."
+    },
+    {
+      "rule_id": "wcag_2_4_4",
+      "principle": "Operable",
+      "success_criterion": "2.4.4 Link Purpose (In Context)",
+      "conformance_level": "A",
+      "description": "The purpose of each link can be determined from the link text alone or from the link text together with its programmatically determined link context, except where the purpose of the link would be ambiguous to users in general.",
+      "act_rules": [
+        {
+          "act_id": "c487ae",
+          "title": "Link has non-empty accessible name",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/c487ae/"
+        },
+        {
+          "act_id": "5effbb",
+          "title": "Link in context is descriptive",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/5effbb/"
+        }
+      ],
+      "common_failures": [
+        "Link text is 'Click here', 'Read more', 'Learn more', or 'More'",
+        "Multiple links with identical text going to different destinations",
+        "Icon-only links with no accessible name",
+        "URL used as link text (e.g., https://example.com/page?id=123)"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G91",
+          "G189",
+          "G53",
+          "ARIA7",
+          "ARIA8",
+          "H30",
+          "H24",
+          "H33"
+        ],
+        "advisory": [
+          "C7"
+        ],
+        "failures": [
+          "F63",
+          "F89"
+        ]
+      },
+      "impact": "Serious — screen reader users often navigate via a list of links read out of context; generic link text makes this impossible.",
+      "affected_users": [
+        "Screen reader users",
+        "Users with cognitive disabilities"
+      ],
+      "test_procedure": "Pull a list of all links using a screen reader's link list feature (e.g., NVDA: Insert+F7). Verify each link's purpose is clear without surrounding context.",
+      "featherless_prompt_context": "The user provided a link with vague text (like 'click here'). Generate an HTML snippet with descriptive link text or an 'aria-label' that clearly defines the link's destination to satisfy WCAG 2.4.4."
+    },
+    {
+      "rule_id": "wcag_2_4_5",
+      "principle": "Operable",
+      "success_criterion": "2.4.5 Multiple Ways",
+      "conformance_level": "AA",
+      "description": "More than one way is available to locate a web page within a set of web pages, except where the web page is the result of, or a step in, a process.",
+      "act_rules": [],
+      "common_failures": [
+        "Site provides only a navigation menu with no search or sitemap",
+        "Single-path navigation with no alternative access route",
+        "Related links section is absent and no site search exists"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G63",
+          "G64",
+          "G125",
+          "G126",
+          "G161",
+          "G185"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "impact": "Serious for users with cognitive disabilities who may not remember the navigation path and need search or a sitemap as an alternative.",
+      "affected_users": [
+        "Users with cognitive disabilities",
+        "Screen reader users",
+        "Elderly users"
+      ],
+      "test_procedure": "Verify at least two of the following exist: navigation menu, search function, sitemap, table of contents, or related-links section.",
+      "featherless_prompt_context": "The user's site has only one navigation method. Generate HTML for a site search widget and a sitemap link to provide multiple ways to find content, satisfying WCAG 2.4.5."
+    },
+    {
+      "rule_id": "wcag_2_4_6",
+      "principle": "Operable",
+      "success_criterion": "2.4.6 Headings and Labels",
+      "conformance_level": "AA",
+      "description": "Headings and labels describe topic or purpose.",
+      "act_rules": [],
+      "common_failures": [
+        "Headings are generic (e.g., 'Section 1', 'Details')",
+        "Form labels say only 'Field 1', 'Field 2'",
+        "Multiple sections share the same heading text",
+        "Labels are present but do not describe the input purpose"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G130",
+          "G131"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "impact": "Serious for screen reader users who navigate by headings and for users with cognitive disabilities who rely on descriptive labels to understand page structure.",
+      "affected_users": [
+        "Screen reader users",
+        "Users with cognitive disabilities"
+      ],
+      "test_procedure": "Review all headings and labels. Verify each is descriptive and unique where necessary. Use a screen reader heading-list feature to check that heading text alone communicates page structure.",
+      "featherless_prompt_context": "The user has vague headings and labels. Generate corrected HTML with descriptive heading text and input labels that clearly convey topic and purpose to satisfy WCAG 2.4.6."
+    },
+    {
+      "rule_id": "wcag_2_4_7",
+      "principle": "Operable",
+      "success_criterion": "2.4.7 Focus Visible",
+      "conformance_level": "AA",
+      "description": "Any keyboard operable user interface has a mode of operation where the keyboard focus indicator is visible.",
+      "act_rules": [
+        {
+          "act_id": "oj04fd",
+          "title": "Element in sequential focus order has visible focus",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/oj04fd/"
+        }
+      ],
+      "common_failures": [
+        "outline: none or outline: 0 in CSS with no replacement indicator",
+        "Focus styles removed in a global CSS reset without being re-added",
+        "Custom focus style is too subtle to see (e.g., color change only)"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G149",
+          "G165",
+          "G195",
+          "SCR31",
+          "C15"
+        ],
+        "advisory": [],
+        "failures": [
+          "F55",
+          "F78"
+        ]
+      },
+      "impact": "Critical for sighted keyboard users who rely on a visible cursor to know where they are on the page.",
+      "affected_users": [
+        "Sighted keyboard users",
+        "Users with motor disabilities",
+        "Power keyboard users"
+      ],
+      "test_procedure": "Tab through all interactive elements. Verify a visible focus indicator (outline, border, underline, background change) is present at every stop.",
+      "featherless_prompt_context": "The user provided CSS that removes focus outlines (e.g., outline: none). Generate a contrast-compliant CSS snippet utilizing the :focus or :focus-visible pseudo-classes to restore focus indicators and satisfy WCAG 2.4.7."
+    },
+    {
+      "rule_id": "wcag_2_4_8",
+      "principle": "Operable",
+      "success_criterion": "2.4.8 Location",
+      "conformance_level": "AAA",
+      "description": "Information about the user's location within a set of web pages is available.",
+      "act_rules": [],
+      "common_failures": [
+        "Multi-level site with no breadcrumb or site map",
+        "Step-based process with no step indicator",
+        "No visual indication of the current page in the navigation menu"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G65",
+          "G63",
+          "G128",
+          "G127"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "impact": "Serious for users with cognitive disabilities who need orientation cues to understand where they are within a site hierarchy.",
+      "affected_users": [
+        "Users with cognitive disabilities",
+        "Screen reader users",
+        "Elderly users"
+      ],
+      "test_procedure": "Navigate to a deep page. Verify the current location is indicated via breadcrumb, highlighted nav item, or equivalent mechanism.",
+      "featherless_prompt_context": "The user's site has no breadcrumb or location indicator. Generate an accessible HTML breadcrumb component using <nav aria-label='Breadcrumb'> and an ordered list to satisfy WCAG 2.4.8."
+    },
+    {
+      "rule_id": "wcag_2_4_9",
+      "principle": "Operable",
+      "success_criterion": "2.4.9 Link Purpose (Link Only)",
+      "conformance_level": "AAA",
+      "description": "A mechanism is available to allow the purpose of each link to be identified from link text alone, except where the purpose of the link would be ambiguous to users in general.",
+      "act_rules": [],
+      "common_failures": [
+        "Link text is 'Read more' with no aria-label providing context",
+        "Multiple 'Download' links that are indistinguishable from link text alone",
+        "Icon-only links with no accessible name"
+      ],
+      "techniques": {
+        "sufficient": [
+          "ARIA8",
+          "G91"
+        ],
+        "advisory": [
+          "H30"
+        ],
+        "failures": [
+          "F84"
+        ]
+      },
+      "impact": "Serious — stricter than 2.4.4, requiring each link to be self-describing from its text alone, without relying on surrounding context.",
+      "affected_users": [
+        "Screen reader users navigating via link lists",
+        "Users with cognitive disabilities"
+      ],
+      "test_procedure": "Pull up the screen reader link list (e.g., NVDA Insert+F7). Every link must convey its destination or purpose from its text alone with no surrounding context needed.",
+      "featherless_prompt_context": "The user has links that rely on context. Generate HTML replacing ambiguous link text with fully descriptive text or aria-labels that are self-sufficient to satisfy WCAG 2.4.9."
+    },
+    {
+      "rule_id": "wcag_2_4_10",
+      "principle": "Operable",
+      "success_criterion": "2.4.10 Section Headings",
+      "conformance_level": "AAA",
+      "description": "Section headings are used to organise the content.",
+      "act_rules": [],
+      "common_failures": [
+        "Long articles or documents with no internal section headings",
+        "Content sections separated only by visual whitespace with no heading",
+        "Heading hierarchy skips levels (h1 → h3) breaking navigation"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G141"
+        ],
+        "advisory": [
+          "H69"
+        ],
+        "failures": []
+      },
+      "impact": "Serious for screen reader users who navigate long pages by jumping between headings and for users with cognitive disabilities who need visible structure.",
+      "affected_users": [
+        "Screen reader users",
+        "Users with cognitive disabilities",
+        "Users with low literacy"
+      ],
+      "test_procedure": "Check all long-form content for section headings. Verify the heading hierarchy is logical and that no content block exceeds a reasonable length without a heading.",
+      "featherless_prompt_context": "The user's long-form content has no section headings. Generate a structured HTML document skeleton with a logical heading hierarchy (h1–h4) organising the content to satisfy WCAG 2.4.10."
+    },
+    {
+      "rule_id": "wcag_2_4_11",
+      "principle": "Operable",
+      "success_criterion": "2.4.11 Focus Appearance",
+      "conformance_level": "AA",
+      "description": "When a user interface component receives keyboard focus, the focus indicator has an area of at least the perimeter of the unfocused component times CSS pixels in size, a contrast ratio of at least 3:1 between focused and unfocused states, and is not entirely hidden by author-created content. (New in WCAG 2.2)",
+      "act_rules": [],
+      "common_failures": [
+        "Focus indicator is a 1px dotted border that does not meet minimum area",
+        "Focus indicator color change alone does not meet 3:1 contrast ratio",
+        "Focus ring is clipped or hidden by overflow:hidden on a parent element",
+        "Tooltip or dropdown obscures the focus indicator of the trigger element"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G195",
+          "C40",
+          "C41"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "requirements": {
+        "minimum_area": "At least the perimeter of the component × 2 CSS pixels (e.g., a 100×30px button requires a focus indicator area of ≥260 CSS pixels²)",
+        "contrast": "At least 3:1 between the focused and unfocused state pixels",
+        "not_hidden": "The focus indicator must not be entirely hidden by author-created content"
+      },
+      "impact": "Critical for sighted keyboard users who need a clearly visible, high-contrast focus indicator to track their position on the page. Stricter than WCAG 2.4.7.",
+      "affected_users": [
+        "Sighted keyboard users",
+        "Low-vision users",
+        "Users with motor disabilities"
+      ],
+      "test_procedure": "Tab to each interactive element and measure the focus indicator area and contrast using DevTools or a colour contrast tool. Verify neither criterion falls below the minimum.",
+      "featherless_prompt_context": "The user's focus indicator fails the WCAG 2.2 minimum area or contrast requirements. Generate CSS using :focus-visible with a solid high-contrast outline of at least 2px that meets both the area and 3:1 contrast requirements to satisfy WCAG 2.4.11."
+    },
+    {
+      "rule_id": "wcag_2_4_12",
+      "principle": "Operable",
+      "success_criterion": "2.4.12 Focus Not Obscured (Minimum)",
+      "conformance_level": "AA",
+      "description": "When a user interface component receives keyboard focus, the component is not entirely hidden due to author-created content. (New in WCAG 2.2)",
+      "act_rules": [],
+      "common_failures": [
+        "Sticky header completely covers the focused element when tabbing",
+        "Cookie banner overlaps the bottom of the page hiding focused links",
+        "Fixed chat widget covers focused elements in the lower viewport",
+        "Dropdown menu appears and fully obscures the trigger element's focus indicator"
+      ],
+      "techniques": {
+        "sufficient": [
+          "C43"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "impact": "Serious for keyboard users who lose track of their position when the focused element is hidden behind sticky headers, footers, or overlays.",
+      "affected_users": [
+        "Sighted keyboard users",
+        "Low-vision users",
+        "Users with motor disabilities"
+      ],
+      "note": "New in WCAG 2.2. A component is 'not entirely hidden' — partial obscurement is a failure only for the stricter 2.4.13 (AAA).",
+      "test_procedure": "Tab through all interactive elements. Verify no focused component is entirely hidden behind a sticky header, footer, modal, or other author-created overlay.",
+      "featherless_prompt_context": "The user's sticky header covers focused elements. Generate CSS using scroll-margin-top or scroll-padding-top on the html element to offset focus scroll position, satisfying WCAG 2.4.12."
+    },
+    {
+      "rule_id": "wcag_2_4_13",
+      "principle": "Operable",
+      "success_criterion": "2.4.13 Focus Not Obscured (Enhanced)",
+      "conformance_level": "AAA",
+      "description": "When a user interface component receives keyboard focus, no part of the component is hidden due to author-created content. (New in WCAG 2.2)",
+      "act_rules": [],
+      "common_failures": [
+        "Any part of a focused component is obscured by a sticky header or footer",
+        "Even partial overlap of the focused element by an overlay",
+        "Tooltip triggered by focus partially covers the focused element"
+      ],
+      "techniques": {
+        "sufficient": [
+          "C43"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "impact": "Critical for low-vision users who zoom and need the entire focused component to be visible.",
+      "affected_users": [
+        "Low-vision users using zoom",
+        "Sighted keyboard users"
+      ],
+      "note": "New in WCAG 2.2. Stricter than 2.4.12 (AA) — requires the entire focused component to be unobscured, not just partially visible.",
+      "test_procedure": "Tab through all elements. Verify no part of any focused component is hidden by any author-created content including sticky headers, footers, toasts, or tooltips.",
+      "featherless_prompt_context": "The user's fixed UI elements partially obscure focused components. Generate CSS ensuring focused elements are fully visible, including using scroll-margin offsets or adjusting z-index stacking, to satisfy WCAG 2.4.13."
+    },
+    {
+      "rule_id": "wcag_2_5_1",
+      "principle": "Operable",
+      "success_criterion": "2.5.1 Pointer Gestures",
+      "conformance_level": "A",
+      "description": "All functionality that uses multipoint or path-based gestures for operation can be operated with a single pointer without a path-based gesture, unless a multipoint or path-based gesture is essential.",
+      "act_rules": [],
+      "common_failures": [
+        "Map or image viewer only supports pinch-to-zoom with no +/- buttons",
+        "Carousel only advances via swipe with no arrow buttons",
+        "Drawing tool requires path-based gestures with no keyboard alternative",
+        "Slider requires dragging with no increment/decrement keyboard support"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G215",
+          "G216"
+        ],
+        "advisory": [],
+        "failures": [
+          "F105"
+        ]
+      },
+      "impact": "Critical for users who cannot perform multipoint (two-finger) or path-based (swipe) gestures due to motor disabilities.",
+      "affected_users": [
+        "Users with motor disabilities",
+        "Users with tremors",
+        "Switch access users",
+        "Keyboard-only users"
+      ],
+      "test_procedure": "Identify all gestures used in the interface. For each multipoint or path-based gesture, verify an equivalent single-pointer alternative (button click, tap) achieves the same result.",
+      "featherless_prompt_context": "The user's interface relies on swipe or pinch gestures without alternatives. Generate an HTML/JS snippet adding single-pointer alternative controls (e.g., Previous/Next buttons for a swipe carousel) to satisfy WCAG 2.5.1."
+    },
+    {
+      "rule_id": "wcag_2_5_2",
+      "principle": "Operable",
+      "success_criterion": "2.5.2 Pointer Cancellation",
+      "conformance_level": "A",
+      "description": "For functionality that can be operated using a single pointer, at least one of the following is true: no down-event, abort/undo, up reversal, or essential.",
+      "act_rules": [
+        {
+          "act_id": "a9c674",
+          "title": "Activation of user interface components is on the up-event",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/a9c674/"
+        }
+      ],
+      "common_failures": [
+        "Button action triggers on mousedown/pointerdown instead of mouseup/pointerup",
+        "Drag-and-drop operation cannot be cancelled by releasing outside the drop zone",
+        "Accidental tap on a destructive action completes immediately on down-event"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G210",
+          "G212"
+        ],
+        "advisory": [],
+        "failures": [
+          "F101"
+        ]
+      },
+      "requirements": {
+        "no_down_event": "The down-event is not used to execute any part of the function.",
+        "abort_undo": "Completion of the function is on the up-event and a mechanism is available to abort before completion or undo after.",
+        "up_reversal": "The up-event reverses any outcome of the preceding down-event.",
+        "essential": "Completing the function on the down-event is essential (e.g., a piano keyboard or game)."
+      },
+      "impact": "Serious for users with motor disabilities and tremors who may accidentally activate controls and need a way to cancel accidental activations.",
+      "affected_users": [
+        "Users with motor disabilities",
+        "Users with tremors",
+        "Users with cognitive disabilities"
+      ],
+      "test_procedure": "Press and hold on interactive controls. Verify the action does not trigger until the pointer is released (up-event). Drag the pointer off the control before releasing and verify the action is cancelled.",
+      "featherless_prompt_context": "The user's button triggers on mousedown. Generate a JavaScript snippet changing the event listener from mousedown/pointerdown to mouseup/pointerup (or click) to satisfy WCAG 2.5.2."
+    },
+    {
+      "rule_id": "wcag_2_5_3",
+      "principle": "Operable",
+      "success_criterion": "2.5.3 Label in Name",
+      "conformance_level": "A",
+      "description": "For user interface components with labels that include text or images of text, the accessible name contains the text that is presented visually.",
+      "act_rules": [
+        {
+          "act_id": "2ee8b8",
+          "title": "Visible label is part of accessible name",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/2ee8b8/"
+        }
+      ],
+      "common_failures": [
+        "aria-label overrides visible button text with a completely different string",
+        "Icon + text button where aria-label only describes the icon",
+        "Visible label is 'Search' but aria-label is 'Find content'",
+        "aria-labelledby points to an element with different text"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G208",
+          "G211"
+        ],
+        "advisory": [],
+        "failures": [
+          "F96"
+        ]
+      },
+      "impact": "Serious — voice control users (e.g., Dragon NaturallySpeaking) activate elements by speaking their visible label; a mismatch makes the control inoperable by voice.",
+      "affected_users": [
+        "Voice control users",
+        "Users with motor disabilities"
+      ],
+      "test_procedure": "For each interactive element with visible text, compare the visible text to the accessible name (computed using browser DevTools Accessibility panel). The accessible name must contain the visible text.",
+      "featherless_prompt_context": "The user provided a UI component where the ARIA label contradicts the visual text. Generate a corrected HTML snippet where the programmatic 'aria-label' matches or starts with the visible text to satisfy WCAG 2.5.3."
+    },
+    {
+      "rule_id": "wcag_2_5_4",
+      "principle": "Operable",
+      "success_criterion": "2.5.4 Motion Actuation",
+      "conformance_level": "A",
+      "description": "Functionality that can be operated by device motion or user motion can also be operated by user interface components, and the response to the motion can be disabled to prevent accidental actuation.",
+      "act_rules": [],
+      "common_failures": [
+        "Shake to undo is the only way to undo an action",
+        "Tilting the device to scroll with no button alternative",
+        "Gyroscope-based controls with no on-screen equivalent",
+        "No setting to disable motion-activated features"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G213"
+        ],
+        "advisory": [],
+        "failures": [
+          "F106"
+        ]
+      },
+      "impact": "Serious for users who have their device mounted in a fixed position or who have involuntary movement disorders (e.g., tremors) that could accidentally trigger motion-based interactions.",
+      "affected_users": [
+        "Users with motor disabilities",
+        "Users with tremors",
+        "Users with devices in fixed mounts"
+      ],
+      "test_procedure": "Identify all motion-actuated features. Verify each has an equivalent UI control, and verify a setting exists to disable motion actuation entirely.",
+      "featherless_prompt_context": "The user's app uses device motion (shake/tilt) as the only trigger for a function. Generate a JavaScript snippet adding an on-screen button alternative and a toggle to disable motion events to satisfy WCAG 2.5.4."
+    },
+    {
+      "rule_id": "wcag_2_5_5",
+      "principle": "Operable",
+      "success_criterion": "2.5.5 Target Size (Enhanced)",
+      "conformance_level": "AAA",
+      "description": "The size of the target for pointer inputs is at least 44 by 44 CSS pixels, except where the target is in a sentence or its size is essential.",
+      "act_rules": [],
+      "common_failures": [
+        "Icon buttons smaller than 44×44 CSS pixels",
+        "Checkboxes or radio buttons with a hit area below 44×44 px",
+        "Close buttons on modals or toasts smaller than 44×44 px",
+        "Inline text links in dense navigation menus with small hit areas"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G220"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "minimum_size": "44×44 CSS pixels",
+      "impact": "Critical for users with motor disabilities, tremors, or limited dexterity who need larger tap/click targets.",
+      "affected_users": [
+        "Users with motor disabilities",
+        "Users with tremors",
+        "Elderly users",
+        "Mobile users"
+      ],
+      "test_procedure": "Inspect all interactive targets using DevTools. Verify each has a bounding box of at least 44×44 CSS pixels.",
+      "featherless_prompt_context": "The user has small interactive targets. Generate CSS increasing the clickable area of buttons and links to at least 44×44 CSS pixels using padding or min-width/min-height to satisfy WCAG 2.5.5."
+    },
+    {
+      "rule_id": "wcag_2_5_6",
+      "principle": "Operable",
+      "success_criterion": "2.5.6 Concurrent Input Mechanisms",
+      "conformance_level": "AAA",
+      "description": "Web content does not restrict use of input modalities available on a platform except where the restriction is essential, required to ensure the security of the content, or required to respect user settings.",
+      "act_rules": [],
+      "common_failures": [
+        "Application disables touch input when a keyboard is connected",
+        "Form restricts paste from clipboard on password fields",
+        "App detects touch and removes keyboard shortcut hints permanently",
+        "Content forces mouse-only interaction when a stylus is available"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G171"
+        ],
+        "advisory": [],
+        "failures": [
+          "F98"
+        ]
+      },
+      "impact": "Serious for users who switch between input modalities (keyboard, touch, mouse, switch access) depending on their context or disability.",
+      "affected_users": [
+        "Users with motor disabilities",
+        "Users switching between input methods",
+        "Switch access users"
+      ],
+      "test_procedure": "Connect multiple input devices (keyboard + touch). Verify the application does not disable or restrict any input modality based on the presence of another.",
+      "featherless_prompt_context": "The user's app restricts input modalities. Generate JavaScript that detects and supports all available input methods simultaneously without restricting any, to satisfy WCAG 2.5.6."
+    },
+    {
+      "rule_id": "wcag_2_5_7",
+      "principle": "Operable",
+      "success_criterion": "2.5.7 Dragging Movements",
+      "conformance_level": "AA",
+      "description": "All functionality that uses a dragging movement for operation can be achieved by a single pointer without dragging, unless dragging is essential. (New in WCAG 2.2)",
+      "act_rules": [],
+      "common_failures": [
+        "Sortable lists only reorderable via drag-and-drop with no keyboard or button alternative",
+        "Sliders that require dragging with no click-to-position or keyboard step support",
+        "File upload areas that only support drag-and-drop with no browse button",
+        "Kanban boards with drag-only card movement"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G219"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "note": "New in WCAG 2.2.",
+      "impact": "Critical for users with motor disabilities who cannot perform dragging gestures but can perform single-pointer taps or clicks.",
+      "affected_users": [
+        "Users with motor disabilities",
+        "Users with tremors",
+        "Switch access users",
+        "Keyboard-only users"
+      ],
+      "test_procedure": "Identify all drag interactions. Verify each has an equivalent single-pointer (click/tap) or keyboard alternative that achieves the same result.",
+      "featherless_prompt_context": "The user's draggable list or slider has no single-pointer alternative. Generate HTML/JS adding Up/Down buttons for list reordering and click-to-position for sliders to satisfy WCAG 2.5.7."
+    },
+    {
+      "rule_id": "wcag_2_5_8",
+      "principle": "Operable",
+      "success_criterion": "2.5.8 Target Size (Minimum)",
+      "conformance_level": "AA",
+      "description": "The size of the target for pointer inputs is at least 24 by 24 CSS pixels, except where spacing, equivalent, inline, essential, or user-agent control applies. (New in WCAG 2.2)",
+      "act_rules": [],
+      "common_failures": [
+        "Icon buttons with a hit area below 24×24 CSS pixels",
+        "Densely packed navigation links with targets smaller than 24×24 px",
+        "Close or dismiss icons smaller than 24×24 px with no surrounding spacing"
+      ],
+      "techniques": {
+        "sufficient": [
+          "C42"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "minimum_size": "24×24 CSS pixels",
+      "note": "New in WCAG 2.2. Less strict than 2.5.5 (AAA 44×44px). Targets smaller than 24×24 CSS pixels may still pass if sufficient spacing (offset) exists around them.",
+      "impact": "Serious for users with motor disabilities and elderly users who need adequately sized touch or click targets.",
+      "affected_users": [
+        "Users with motor disabilities",
+        "Users with tremors",
+        "Elderly users",
+        "Mobile users"
+      ],
+      "test_procedure": "Inspect interactive targets in DevTools. Verify each has a bounding box of at least 24×24 CSS pixels, or that targets smaller than this have sufficient offset spacing from adjacent targets.",
+      "featherless_prompt_context": "The user has interactive targets below 24×24 CSS pixels. Generate CSS increasing padding or adding a minimum size to bring all targets to at least 24×24 CSS pixels to satisfy WCAG 2.5.8."
+    },
+    {
+      "rule_id": "wcag_3_1_1",
+      "principle": "Understandable",
+      "success_criterion": "3.1.1 Language of Page",
+      "conformance_level": "A",
+      "description": "The default human language of each web page can be programmatically determined.",
+      "act_rules": [
+        {
+          "act_id": "bf051a",
+          "title": "HTML page has lang attribute",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/bf051a/"
+        },
+        {
+          "act_id": "5b7ae0",
+          "title": "HTML page lang attribute has valid language tag",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/5b7ae0/"
+        }
+      ],
+      "common_failures": [
+        "Missing lang attribute on <html> element",
+        "lang attribute with invalid value (e.g., lang='english')",
+        "lang attribute uses wrong BCP 47 tag",
+        "lang attribute exists but is empty"
+      ],
+      "techniques": {
+        "sufficient": [
+          "H57"
+        ],
+        "advisory": [],
+        "failures": [
+          "F78"
+        ]
+      },
+      "impact": "Critical — screen readers select the pronunciation engine based on lang; a missing or wrong value causes garbled speech output in the user's native language.",
+      "affected_users": [
+        "Screen reader users",
+        "Users with cognitive disabilities relying on text-to-speech"
+      ],
+      "valid_examples": {
+        "English": "lang='en'",
+        "French": "lang='fr'",
+        "Spanish": "lang='es'",
+        "German": "lang='de'",
+        "Japanese": "lang='ja'",
+        "Arabic": "lang='ar'",
+        "Chinese_Simplified": "lang='zh-Hans'",
+        "Brazilian_Portuguese": "lang='pt-BR'"
+      },
+      "test_procedure": "Inspect the opening <html> tag. Verify a valid BCP 47 language tag is present in the lang attribute.",
+      "featherless_prompt_context": "The user provided an HTML document missing a valid language definition. Generate a code snippet adding the correct 'lang' attribute (e.g., lang='en') to the <html> tag to satisfy WCAG 3.1.1."
+    },
+    {
+      "rule_id": "wcag_3_1_2",
+      "principle": "Understandable",
+      "success_criterion": "3.1.2 Language of Parts",
+      "conformance_level": "AA",
+      "description": "The human language of each passage or phrase in the content can be programmatically determined except for proper names, technical terms, and indeterminate language words.",
+      "act_rules": [
+        {
+          "act_id": "de46e4",
+          "title": "HTML element language subtag matches default language",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/de46e4/"
+        }
+      ],
+      "common_failures": [
+        "A page in English contains a French paragraph without lang='fr' on that element",
+        "Multilingual navigation menu items lack individual lang attributes",
+        "Foreign language quotations lack appropriate lang attribute"
+      ],
+      "techniques": {
+        "sufficient": [
+          "H58"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "impact": "Serious — screen readers mispronounce foreign language passages if not marked with the correct lang attribute.",
+      "affected_users": [
+        "Screen reader users in multilingual contexts"
+      ],
+      "test_procedure": "Identify any passages in a different language than the page default. Verify they carry a lang attribute with a valid BCP 47 language tag.",
+      "featherless_prompt_context": "The user has a multilingual page with foreign language passages lacking lang attributes. Generate corrected HTML wrapping foreign passages with appropriate lang attributes to satisfy WCAG 3.1.2."
+    },
+    {
+      "rule_id": "wcag_3_1_3",
+      "principle": "Understandable",
+      "success_criterion": "3.1.3 Unusual Words",
+      "conformance_level": "AAA",
+      "description": "A mechanism is available for identifying specific definitions of words or phrases used in an unusual or restricted way, including idioms and jargon.",
+      "act_rules": [],
+      "common_failures": [
+        "Technical jargon used without definition or glossary link",
+        "Idioms used without explanation for non-native speakers",
+        "Domain-specific abbreviations expanded only on first use without a glossary"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G55",
+          "G62",
+          "G112"
+        ],
+        "advisory": [
+          "G163"
+        ],
+        "failures": []
+      },
+      "impact": "Serious for users with cognitive disabilities, low literacy, and non-native language speakers who may not understand specialised or unusual word usage.",
+      "affected_users": [
+        "Users with cognitive disabilities",
+        "Users with low literacy",
+        "Non-native language users"
+      ],
+      "test_procedure": "Identify jargon, idioms, and unusual word usage. Verify a definition or glossary is accessible for each, either inline, via tooltip, or in a linked glossary.",
+      "featherless_prompt_context": "The user's content contains jargon without definitions. Generate HTML using <dfn> elements, aria-describedby tooltips, or a linked glossary section to identify unusual words and satisfy WCAG 3.1.3."
+    },
+    {
+      "rule_id": "wcag_3_1_4",
+      "principle": "Understandable",
+      "success_criterion": "3.1.4 Abbreviations",
+      "conformance_level": "AAA",
+      "description": "A mechanism for identifying the expanded form or meaning of abbreviations is available.",
+      "act_rules": [],
+      "common_failures": [
+        "Abbreviations used with no expansion on first occurrence",
+        "Abbreviations in headings with no explanation",
+        "Acronyms not linked to a glossary or wrapped in <abbr>"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G55",
+          "G62",
+          "G97",
+          "H28"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "impact": "Serious for users with cognitive disabilities, low literacy, and non-native language speakers who cannot interpret abbreviations.",
+      "affected_users": [
+        "Users with cognitive disabilities",
+        "Non-native language users",
+        "Users with low literacy"
+      ],
+      "test_procedure": "Identify all abbreviations and acronyms. Verify each is expanded using <abbr title=''>, defined in a glossary, or expanded on first use.",
+      "featherless_prompt_context": "The user's content uses unexplained abbreviations. Generate HTML wrapping abbreviations in <abbr title='Full Form'> elements and adding a glossary section to satisfy WCAG 3.1.4."
+    },
+    {
+      "rule_id": "wcag_3_1_5",
+      "principle": "Understandable",
+      "success_criterion": "3.1.5 Reading Level",
+      "conformance_level": "AAA",
+      "description": "When text requires reading ability more advanced than the lower secondary education level after removal of proper names and titles, supplemental content or a version that does not require reading ability more advanced than the lower secondary education level is available.",
+      "act_rules": [],
+      "common_failures": [
+        "Legal or medical content written at a high reading level with no plain-language summary",
+        "Technical documentation with no simplified explanation",
+        "Government forms with complex language and no plain-English alternative"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G86",
+          "G103",
+          "G79",
+          "G153",
+          "G160"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "impact": "Serious for users with cognitive disabilities, low literacy, and non-native language speakers who cannot comprehend advanced reading levels.",
+      "affected_users": [
+        "Users with cognitive disabilities",
+        "Users with low literacy",
+        "Non-native language users",
+        "Elderly users"
+      ],
+      "test_procedure": "Assess the Flesch-Kincaid or equivalent reading level of the content. If above lower secondary level (approximately grade 7–9), verify a simplified summary or plain-language version is available.",
+      "featherless_prompt_context": "The user's content is written at a high reading level. Generate a plain-language HTML summary section alongside the original content to satisfy WCAG 3.1.5."
+    },
+    {
+      "rule_id": "wcag_3_1_6",
+      "principle": "Understandable",
+      "success_criterion": "3.1.6 Pronunciation",
+      "conformance_level": "AAA",
+      "description": "A mechanism is available for identifying specific pronunciation of words where meaning of the words, in context, is ambiguous without knowing the pronunciation.",
+      "act_rules": [],
+      "common_failures": [
+        "Homographs used without phonetic guidance (e.g., 'lead' the metal vs 'lead' the verb)",
+        "Foreign words used without pronunciation guide",
+        "Names that are ambiguous in pronunciation without clarification"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G62",
+          "G120",
+          "G121",
+          "G163",
+          "H62"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "impact": "Serious for screen reader users and users who rely on text-to-speech where mispronunciation causes misunderstanding.",
+      "affected_users": [
+        "Screen reader users",
+        "Users relying on text-to-speech"
+      ],
+      "test_procedure": "Identify words whose pronunciation determines meaning. Verify each is clarified via phonetic transcription, ruby annotation, or a linked pronunciation guide.",
+      "featherless_prompt_context": "The user's content contains ambiguous homographs. Generate HTML using ruby annotations or aria-label to clarify pronunciation and satisfy WCAG 3.1.6."
+    },
+    {
+      "rule_id": "wcag_3_2_1",
+      "principle": "Understandable",
+      "success_criterion": "3.2.1 On Focus",
+      "conformance_level": "A",
+      "description": "Any component does not initiate a change of context when it receives focus.",
+      "act_rules": [],
+      "common_failures": [
+        "A select menu opens a new page when an option receives focus (before the user confirms)",
+        "A form field submits the form when it receives focus",
+        "A tooltip or popup opens a new browser window on focus",
+        "Focus moving to a component triggers a page reload"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G107"
+        ],
+        "advisory": [
+          "G200"
+        ],
+        "failures": [
+          "F52",
+          "F55"
+        ]
+      },
+      "impact": "Serious — unexpected context changes on focus disorient keyboard and screen reader users who are simply navigating through the page.",
+      "affected_users": [
+        "Keyboard users",
+        "Screen reader users",
+        "Users with cognitive disabilities"
+      ],
+      "test_procedure": "Tab through all interactive elements. Verify that no context change (new window, page reload, form submission, significant DOM change) occurs merely by receiving focus.",
+      "featherless_prompt_context": "The user's select element or component triggers a page change on focus. Generate corrected HTML/JS that defers the action until the user explicitly activates the control (e.g., presses Enter or clicks a Submit button) to satisfy WCAG 3.2.1."
+    },
+    {
+      "rule_id": "wcag_3_2_2",
+      "principle": "Understandable",
+      "success_criterion": "3.2.2 On Input",
+      "conformance_level": "A",
+      "description": "Changing the setting of any user interface component does not automatically cause a change of context unless the user has been advised of the behavior before using the component.",
+      "act_rules": [],
+      "common_failures": [
+        "Selecting a radio button immediately navigates to a new page",
+        "Choosing from a dropdown/select immediately submits the form",
+        "Checking a checkbox triggers a full page reload without warning",
+        "Entering text in a search field navigates away before the user finishes typing"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G80",
+          "G13"
+        ],
+        "advisory": [
+          "G201"
+        ],
+        "failures": [
+          "F36",
+          "F37"
+        ]
+      },
+      "impact": "Serious — automatic context changes on input prevent users from correcting mistakes or reviewing their input before submission.",
+      "affected_users": [
+        "Keyboard users",
+        "Screen reader users",
+        "Users with cognitive disabilities",
+        "Users with motor disabilities who make accidental inputs"
+      ],
+      "test_procedure": "Change the value of all form controls (radio, checkbox, select, text input). Verify no context change occurs automatically. If it does, confirm advance notice was given before the control.",
+      "featherless_prompt_context": "The user's select element auto-submits on change. Generate corrected HTML adding an explicit Submit button and removing the onchange navigation handler to satisfy WCAG 3.2.2."
+    },
+    {
+      "rule_id": "wcag_3_2_3",
+      "principle": "Understandable",
+      "success_criterion": "3.2.3 Consistent Navigation",
+      "conformance_level": "AA",
+      "description": "Navigational mechanisms that are repeated on multiple web pages within a set of web pages occur in the same relative order each time they are repeated, unless a change is initiated by the user.",
+      "act_rules": [],
+      "common_failures": [
+        "Primary navigation order changes between pages without user action",
+        "Breadcrumb appears before the navigation on some pages and after on others",
+        "Search field moves from the header to the footer on certain page types",
+        "Footer link order varies inconsistently across pages"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G61"
+        ],
+        "advisory": [
+          "PDF14",
+          "PDF17"
+        ],
+        "failures": [
+          "F66"
+        ]
+      },
+      "impact": "Serious for users with cognitive disabilities and screen reader users who build a mental model of the page structure and rely on consistent navigation placement.",
+      "affected_users": [
+        "Users with cognitive disabilities",
+        "Screen reader users",
+        "Users with low literacy"
+      ],
+      "test_procedure": "Compare the navigation block order across at least 3 different page types in the site. Verify the relative order of repeated navigation elements is identical.",
+      "featherless_prompt_context": "The user's site has inconsistent navigation order across pages. Generate a shared HTML navigation component with a fixed relative order to be used across all page templates, satisfying WCAG 3.2.3."
+    },
+    {
+      "rule_id": "wcag_3_2_4",
+      "principle": "Understandable",
+      "success_criterion": "3.2.4 Consistent Identification",
+      "conformance_level": "AA",
+      "description": "Components that have the same functionality within a set of web pages are identified consistently.",
+      "act_rules": [],
+      "common_failures": [
+        "A search button is labelled 'Search' on one page and 'Find' on another",
+        "The same icon is used for different functions on different pages",
+        "A print function uses different accessible names ('Print page' vs 'Print this')",
+        "Breadcrumb component has different aria-label values across pages"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G197"
+        ],
+        "advisory": [],
+        "failures": [
+          "F31"
+        ]
+      },
+      "impact": "Serious for users with cognitive disabilities who depend on consistent labels to recognise and predict the behaviour of repeated components.",
+      "affected_users": [
+        "Users with cognitive disabilities",
+        "Screen reader users"
+      ],
+      "test_procedure": "Identify components with the same function across pages. Verify their text labels and accessible names are identical. Cross-check with a site-wide accessibility audit.",
+      "featherless_prompt_context": "The user has identical functionality components with inconsistent labels across pages. Generate a component naming reference or corrected HTML ensuring the accessible name is identical wherever the component appears, satisfying WCAG 3.2.4."
+    },
+    {
+      "rule_id": "wcag_3_2_5",
+      "principle": "Understandable",
+      "success_criterion": "3.2.5 Change on Request",
+      "conformance_level": "AAA",
+      "description": "Changes of context are initiated only by user request or a mechanism is available to turn off such changes.",
+      "act_rules": [],
+      "common_failures": [
+        "Auto-refreshing pages without user request",
+        "Links that open in new windows without warning",
+        "Any automatic redirect or page change not initiated by the user"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G76",
+          "H83",
+          "SCR19"
+        ],
+        "advisory": [
+          "G200"
+        ],
+        "failures": [
+          "F60",
+          "F61"
+        ]
+      },
+      "impact": "Critical for users with cognitive disabilities and screen reader users who are disoriented by unexpected context changes.",
+      "affected_users": [
+        "Users with cognitive disabilities",
+        "Screen reader users"
+      ],
+      "test_procedure": "Verify no context change (new window, page reload, significant DOM change) occurs without user initiation. If it does, confirm a disable mechanism exists.",
+      "featherless_prompt_context": "The user's site auto-refreshes or opens new windows unexpectedly. Generate HTML/JS ensuring all context changes are user-initiated, with a warning for new windows using rel='noopener' and an aria-label notice to satisfy WCAG 3.2.5."
+    },
+    {
+      "rule_id": "wcag_3_2_6",
+      "principle": "Understandable",
+      "success_criterion": "3.2.6 Consistent Help",
+      "conformance_level": "AA",
+      "description": "If a web page contains any of the following help mechanisms, and those mechanisms are repeated on multiple pages, they occur in the same relative order to other page content on each page: human contact details, human contact mechanism, self-help option, a fully automated contact mechanism. (New in WCAG 2.2)",
+      "act_rules": [],
+      "common_failures": [
+        "Chat widget appears in the header on some pages and the footer on others",
+        "Help link is in the nav on some pages and the sidebar on others",
+        "Contact information moves position across page templates"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G220"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "note": "New in WCAG 2.2.",
+      "impact": "Serious for users with cognitive disabilities who rely on consistent placement of help mechanisms across pages.",
+      "affected_users": [
+        "Users with cognitive disabilities",
+        "Elderly users"
+      ],
+      "test_procedure": "Identify all help mechanisms. Compare their relative position in the page across multiple page types. Verify placement is consistent.",
+      "featherless_prompt_context": "The user's help widget moves position across pages. Generate a shared layout component keeping the help mechanism in a consistent relative position across all page templates to satisfy WCAG 3.2.6."
+    },
+    {
+      "rule_id": "wcag_3_3_1",
+      "principle": "Understandable",
+      "success_criterion": "3.3.1 Error Identification",
+      "conformance_level": "A",
+      "description": "If an input error is automatically detected, the item that is in error is identified and the error is described to the user in text.",
+      "act_rules": [],
+      "common_failures": [
+        "Error state conveyed only by red border with no text",
+        "Error message not associated with the errored input",
+        "aria-invalid used on the field but no error message linked via aria-describedby",
+        "Error appears visually but is not announced to screen readers"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G83",
+          "G84",
+          "G85",
+          "ARIA18",
+          "ARIA19",
+          "ARIA21",
+          "SCR18",
+          "SCR32"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "impact": "Critical — users with cognitive disabilities and screen reader users need clear, text-based error descriptions to correct their inputs.",
+      "affected_users": [
+        "Screen reader users",
+        "Users with cognitive disabilities"
+      ],
+      "test_procedure": "Submit a form with invalid data. Verify each errored field is identified in text and the error message is programmatically associated with the field (e.g., via aria-describedby).",
+      "featherless_prompt_context": "The user's form shows errors only visually. Generate HTML with aria-invalid and aria-describedby linking the field to an accessible error message to satisfy WCAG 3.3.1."
+    },
+    {
+      "rule_id": "wcag_3_3_2",
+      "principle": "Understandable",
+      "success_criterion": "3.3.2 Labels or Instructions",
+      "conformance_level": "A",
+      "description": "Labels or instructions are provided when content requires user input.",
+      "act_rules": [],
+      "common_failures": [
+        "Placeholder text used as the only label (disappears on focus)",
+        "Required field format not described (e.g., date format MM/DD/YYYY)",
+        "No label associated with an input field",
+        "Instructions provided only after the relevant form control"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G89",
+          "G184",
+          "G131",
+          "H44",
+          "H71",
+          "H85",
+          "ARIA1",
+          "ARIA9"
+        ],
+        "advisory": [
+          "G167"
+        ],
+        "failures": []
+      },
+      "impact": "Serious — users with cognitive disabilities need clear instructions and labels to complete form fields correctly.",
+      "affected_users": [
+        "Users with cognitive disabilities",
+        "Screen reader users"
+      ],
+      "test_procedure": "Verify every form input has a persistent visible label (not placeholder-only) and that required format or constraints are described before the input.",
+      "featherless_prompt_context": "The user's form relies on placeholder text as the only label. Generate corrected HTML with a visible <label> element and optionally a format hint using aria-describedby to satisfy WCAG 3.3.2."
+    },
+    {
+      "rule_id": "wcag_3_3_3",
+      "principle": "Understandable",
+      "success_criterion": "3.3.3 Error Suggestion",
+      "conformance_level": "AA",
+      "description": "If an input error is automatically detected and suggestions for correction are known, then the suggestion is provided to the user, unless it would jeopardize the security or purpose of the content.",
+      "act_rules": [],
+      "common_failures": [
+        "Error message says 'Invalid email' without specifying the expected format",
+        "Password error says 'Password too short' without stating the minimum length",
+        "Date field error says 'Invalid date' without showing the required format",
+        "Error only indicates the field is wrong with no guidance on how to fix it"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G84",
+          "G85",
+          "ARIA2",
+          "ARIA18"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "impact": "Serious for users with cognitive disabilities, learning disabilities, and low literacy who need concrete, specific guidance to correct their mistakes.",
+      "affected_users": [
+        "Users with cognitive disabilities",
+        "Users with learning disabilities",
+        "Screen reader users",
+        "Elderly users"
+      ],
+      "test_procedure": "Trigger validation errors by submitting invalid data. Verify each error message includes a specific, actionable suggestion (e.g., 'Enter a valid email address, for example: name@example.com').",
+      "featherless_prompt_context": "The user's form shows generic error messages. Generate HTML with specific, accessible error messages linked via aria-describedby that include format examples and correction guidance to satisfy WCAG 3.3.3."
+    },
+    {
+      "rule_id": "wcag_3_3_4",
+      "principle": "Understandable",
+      "success_criterion": "3.3.4 Error Prevention (Legal, Financial, Data)",
+      "conformance_level": "AA",
+      "description": "For web pages that cause legal commitments or financial transactions for the user to occur, that modify or delete user-controllable data in data storage systems, or that submit user test responses, submissions are reversible, verified, or confirmed.",
+      "act_rules": [],
+      "common_failures": [
+        "One-click purchase with no order review or confirmation step",
+        "Deleting an account with no confirmation dialog and no undo",
+        "Submitting a legal form with no review page",
+        "Overwriting saved data with no warning or ability to cancel"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G98",
+          "G99",
+          "G155",
+          "G164",
+          "G168"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "requirements": {
+        "reversible": "Submissions can be reversed (e.g., a cancellation period for orders).",
+        "checked": "Data entered by the user is checked for input errors and the user is given the opportunity to correct them.",
+        "confirmed": "A mechanism is available for reviewing, confirming, and correcting information before finalising the submission."
+      },
+      "impact": "Critical for users with cognitive disabilities, motor disabilities (who may accidentally submit), and any user performing high-stakes transactions.",
+      "affected_users": [
+        "Users with cognitive disabilities",
+        "Users with motor disabilities",
+        "Elderly users",
+        "All users in high-stakes contexts"
+      ],
+      "test_procedure": "Identify all submission flows involving financial transactions, legal commitments, or data deletion. Verify at least one of: a review/confirm step, an undo mechanism, or a clearly labelled correction opportunity exists.",
+      "featherless_prompt_context": "The user's checkout or deletion flow has no confirmation step. Generate an HTML/JS snippet adding a review and confirm dialog before the final destructive or transactional action to satisfy WCAG 3.3.4."
+    },
+    {
+      "rule_id": "wcag_3_3_5",
+      "principle": "Understandable",
+      "success_criterion": "3.3.5 Help",
+      "conformance_level": "AAA",
+      "description": "Context-sensitive help is available.",
+      "act_rules": [],
+      "common_failures": [
+        "Complex forms with no inline help or hint text",
+        "No tooltips, help icons, or contextual documentation on complex inputs",
+        "Help is only accessible via a general FAQ page with no direct context link"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G71",
+          "G184",
+          "G193"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "impact": "Serious for users with cognitive disabilities who need in-context guidance to complete complex tasks.",
+      "affected_users": [
+        "Users with cognitive disabilities",
+        "Elderly users",
+        "Users with low literacy"
+      ],
+      "test_procedure": "Verify complex or non-obvious form fields and interactions provide context-sensitive help (tooltip, adjacent hint, help icon linking to instructions).",
+      "featherless_prompt_context": "The user's form has no context-sensitive help. Generate HTML adding help icons with aria-describedby linked tooltips or hint text adjacent to complex form fields to satisfy WCAG 3.3.5."
+    },
+    {
+      "rule_id": "wcag_3_3_6",
+      "principle": "Understandable",
+      "success_criterion": "3.3.6 Error Prevention (All)",
+      "conformance_level": "AAA",
+      "description": "For web pages that require the user to submit information, at least one of the following is true: submissions are reversible, data is checked and the user can correct errors, or a mechanism is available for reviewing, confirming, and correcting information before finalising submission.",
+      "act_rules": [],
+      "common_failures": [
+        "Any form submission with no review step, confirmation, or undo mechanism",
+        "Newsletter signup with no confirmation or unsubscribe option",
+        "Profile update with no review page and no undo"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G98",
+          "G99",
+          "G155",
+          "G164",
+          "G168"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "impact": "Stricter than 3.3.4 — applies to all form submissions, not just legal, financial, or data-critical ones.",
+      "affected_users": [
+        "Users with cognitive disabilities",
+        "Users with motor disabilities",
+        "Elderly users"
+      ],
+      "test_procedure": "Test every form submission. Verify at least one safeguard exists: reversible, checkable, or confirmable.",
+      "featherless_prompt_context": "The user has a simple form with no error prevention safeguard. Generate an HTML confirmation step or summary screen before final submission to satisfy WCAG 3.3.6."
+    },
+    {
+      "rule_id": "wcag_3_3_7",
+      "principle": "Understandable",
+      "success_criterion": "3.3.7 Redundant Entry",
+      "conformance_level": "AA",
+      "description": "Information previously entered by or provided to the user that is required to be entered again in the same process is either auto-populated or available for the user to select. (New in WCAG 2.2)",
+      "act_rules": [],
+      "common_failures": [
+        "Checkout flow asks for billing address after shipping address was already entered, with no auto-fill option",
+        "Multi-step form asks for the same information on different steps without pre-populating",
+        "Registration flow asks for email twice without indicating it will be verified"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G221"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "note": "New in WCAG 2.2. Exception: re-entering data is required for security (e.g., confirming a password) or when the previous entry is no longer valid.",
+      "impact": "Serious for users with cognitive disabilities and motor disabilities who find it difficult or burdensome to re-enter previously provided information.",
+      "affected_users": [
+        "Users with cognitive disabilities",
+        "Users with motor disabilities",
+        "Elderly users"
+      ],
+      "test_procedure": "Walk through all multi-step processes. Identify any step that asks for information already provided. Verify it is pre-populated or selectable from previous input.",
+      "featherless_prompt_context": "The user's multi-step form repeats previously collected data. Generate JavaScript pre-populating repeated fields from earlier step data stored in session state to satisfy WCAG 3.3.7."
+    },
+    {
+      "rule_id": "wcag_3_3_8",
+      "principle": "Understandable",
+      "success_criterion": "3.3.8 Accessible Authentication (Minimum)",
+      "conformance_level": "AA",
+      "description": "A cognitive function test is not required for any step in an authentication process unless an alternative is provided, or the test is to recognise objects or personal content. (New in WCAG 2.2)",
+      "act_rules": [],
+      "common_failures": [
+        "CAPTCHA with no audio or object-recognition alternative",
+        "Password field that blocks paste, preventing use of password managers",
+        "Authentication requires memorising a code with no copy-paste option",
+        "Puzzle-based CAPTCHA with no accessible alternative"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G218"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "note": "New in WCAG 2.2. Cognitive function tests include remembering passwords, solving puzzles, and transcribing characters. Object recognition (select all images with a car) and personal content (recognise your own photo) are exempt.",
+      "impact": "Critical for users with cognitive disabilities who cannot solve memory or transcription-based authentication challenges.",
+      "affected_users": [
+        "Users with cognitive disabilities",
+        "Users with memory impairments",
+        "Elderly users"
+      ],
+      "test_procedure": "Review the authentication flow. Verify no step requires a cognitive function test without an alternative. Verify paste is not blocked on password or code fields.",
+      "featherless_prompt_context": "The user's login has a CAPTCHA or blocks clipboard paste. Generate an authentication flow using passkeys or object-recognition CAPTCHA alternatives and ensure password fields allow paste to satisfy WCAG 3.3.8."
+    },
+    {
+      "rule_id": "wcag_3_3_9",
+      "principle": "Understandable",
+      "success_criterion": "3.3.9 Accessible Authentication (Enhanced)",
+      "conformance_level": "AAA",
+      "description": "A cognitive function test is not required for any step in an authentication process. (New in WCAG 2.2)",
+      "act_rules": [],
+      "common_failures": [
+        "Any CAPTCHA with no alternative whatsoever",
+        "Object-recognition or personal content tests still required with no alternative",
+        "Authentication requires any memory or recognition task"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G218"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "note": "New in WCAG 2.2. Stricter than 3.3.8 — removes the object-recognition and personal-content exemptions. No cognitive function test of any kind is permitted.",
+      "impact": "Critical for users with the most severe cognitive impairments for whom even object recognition is a barrier.",
+      "affected_users": [
+        "Users with severe cognitive disabilities",
+        "Users with memory impairments"
+      ],
+      "test_procedure": "Verify the authentication process contains absolutely no cognitive function tests — no CAPTCHA of any type, no memory challenge, no object recognition.",
+      "featherless_prompt_context": "The user's authentication uses any cognitive test. Generate an authentication flow based entirely on passkeys, magic links, or hardware tokens with no cognitive challenge to satisfy WCAG 3.3.9."
+    },
+    {
+      "rule_id": "wcag_4_1_1",
+      "principle": "Robust",
+      "success_criterion": "4.1.1 Parsing",
+      "conformance_level": "A",
+      "description": "In content implemented using markup languages, elements have complete start and end tags, elements are nested according to their specifications, elements do not contain duplicate attributes, and IDs are unique.",
+      "act_rules": [
+        {
+          "act_id": "8fc3b6",
+          "title": "ID attribute value is unique",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/8fc3b6/"
+        }
+      ],
+      "common_failures": [
+        "Duplicate id attributes in the same document",
+        "Unclosed HTML tags",
+        "Improperly nested elements (e.g., <div> inside <span>)",
+        "Duplicate attributes on the same element"
+      ],
+      "techniques": {
+        "sufficient": [
+          "G134",
+          "G192",
+          "H74",
+          "H75",
+          "H88",
+          "H93",
+          "H94"
+        ],
+        "advisory": [],
+        "failures": [
+          "F17",
+          "F19",
+          "F70",
+          "F77"
+        ]
+      },
+      "impact": "Serious — duplicate IDs break ARIA relationships (labelledby, describedby, controls), causing assistive technologies to reference the wrong element.",
+      "affected_users": [
+        "Screen reader users",
+        "Users of any assistive technology that relies on DOM structure"
+      ],
+      "test_procedure": "Validate the HTML with the W3C Markup Validator. Check for duplicate IDs using browser DevTools or document.querySelectorAll('[id]').",
+      "featherless_prompt_context": "The user's page has duplicate IDs or invalid HTML structure. Generate a corrected HTML snippet with unique IDs and valid nesting to satisfy WCAG 4.1.1."
+    },
+    {
+      "rule_id": "wcag_4_1_2",
+      "principle": "Robust",
+      "success_criterion": "4.1.2 Name, Role, Value",
+      "conformance_level": "A",
+      "description": "For all user interface components, the name and role can be programmatically determined; states, properties, and values that can be set by the user can be programmatically set; and notification of changes to these items is available to user agents, including assistive technologies.",
+      "act_rules": [
+        {
+          "act_id": "97a4e1",
+          "title": "Button has non-empty accessible name",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/97a4e1/"
+        },
+        {
+          "act_id": "e086e5",
+          "title": "Form field has non-empty accessible name",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/e086e5/"
+        },
+        {
+          "act_id": "cae760",
+          "title": "Iframe element has non-empty accessible name",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/cae760/"
+        }
+      ],
+      "common_failures": [
+        "Custom <div> acting as a button without role='button'",
+        "Icon-only button with no accessible name",
+        "Custom checkbox/toggle without aria-checked state",
+        "<iframe> without a title attribute",
+        "Combobox without aria-expanded state",
+        "Form input without associated <label> or aria-label"
+      ],
+      "techniques": {
+        "sufficient": [
+          "ARIA14",
+          "ARIA16",
+          "G108",
+          "H44",
+          "H64",
+          "H65",
+          "H91"
+        ],
+        "advisory": [],
+        "failures": [
+          "F15",
+          "F20",
+          "F68",
+          "F79",
+          "F86",
+          "F89"
+        ]
+      },
+      "impact": "Critical — assistive technologies cannot interpret custom or poorly-coded components without a programmatic name, role, and state.",
+      "affected_users": [
+        "Screen reader users",
+        "Voice control users",
+        "Users of any assistive technology"
+      ],
+      "test_procedure": "Open the browser Accessibility Tree (DevTools > Accessibility). Verify every interactive element shows a correct computed name, role, and state. Test dynamic state changes (e.g., expanded/collapsed) are updated in the tree.",
+      "featherless_prompt_context": "The user provided a custom UI component lacking a programmatic name or role. Generate an optimized code snippet adding appropriate ARIA roles, states, or labels to satisfy WCAG 4.1.2."
+    },
+    {
+      "rule_id": "wcag_4_1_3",
+      "principle": "Robust",
+      "success_criterion": "4.1.3 Status Messages",
+      "conformance_level": "AA",
+      "description": "In content implemented using markup languages, status messages can be programmatically determined through role or properties such that they can be presented to the user by assistive technologies without receiving focus.",
+      "act_rules": [],
+      "common_failures": [
+        "Success/error toast notifications displayed visually but not announced by screen readers",
+        "Live search result counts not in an aria-live region",
+        "Shopping cart update notification not announced",
+        "Form submission confirmation message not in a live region"
+      ],
+      "techniques": {
+        "sufficient": [
+          "ARIA19",
+          "ARIA22",
+          "ARIA23",
+          "G199"
+        ],
+        "advisory": [],
+        "failures": []
+      },
+      "impact": "Serious — screen reader users miss important status updates (success, error, loading complete) if they are not conveyed through live regions.",
+      "affected_users": [
+        "Screen reader users"
+      ],
+      "aria_roles": {
+        "status": "role='status' (polite) — for non-critical status messages like 'Item added to cart'",
+        "alert": "role='alert' (assertive) — for critical messages like 'Error: session expired'",
+        "log": "role='log' — for chat logs or cumulative status updates",
+        "progressbar": "role='progressbar' with aria-valuenow/min/max for progress indicators"
+      },
+      "test_procedure": "Trigger status messages (form submit, search, cart update) while using a screen reader. Verify the message is announced without moving focus to it.",
+      "featherless_prompt_context": "The user has a toast notification or status update that is not announced by screen readers. Generate HTML with the appropriate role='status' or role='alert' and an aria-live region to satisfy WCAG 4.1.3."
+    }
+  ],
+  "metadata": {
+    "standard": "WCAG 2.2",
+    "act_rules_source": "https://www.w3.org/WAI/standards-guidelines/act/rules/",
+    "techniques_source": "https://www.w3.org/WAI/WCAG21/Techniques/",
+    "failures_source": "https://www.w3.org/WAI/WCAG21/Techniques/#failures",
+    "total_rules": 87,
+    "conformance_levels": {
+      "A": "Minimum level — must satisfy",
+      "AA": "Standard level — legally required in most jurisdictions",
+      "AAA": "Enhanced level — recommended where possible"
+    },
+    "last_updated": "2024-10",
+    "wcag_version": "2.2",
+    "published": "2023-10-05",
+    "wcag_reference": "https://www.w3.org/TR/WCAG22/",
+    "note": "Complete WCAG 2.2 dictionary covering all Level A, AA, and AAA success criteria.",
+    "level_a_count": 30,
+    "level_aa_count": 27,
+    "level_aaa_count": 30
+  }
+}

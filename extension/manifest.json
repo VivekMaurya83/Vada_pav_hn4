@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "AccessiScan — WCAG Accessibility Auditor",
+  "version": "1.0.0",
+  "description": "Scan any web page for WCAG 2.2 accessibility violations and get AI-powered HTML fixes.",
+  "permissions": ["activeTab", "scripting", "downloads", "sidePanel", "tabs"],
+  "host_permissions": ["http://localhost:8000/*", "<all_urls>"],
+  "action": {
+    "default_title": "Open AccessiScan"
+  },
+  "side_panel": {
+    "default_path": "popup/popup.html"
+  },
+  "icons": {},
+  "background": {
+    "service_worker": "background.js"
+  }
+}
