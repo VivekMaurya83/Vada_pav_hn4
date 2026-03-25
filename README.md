@@ -1,7 +1,6 @@
 # AccessiScan AI
 
 A comprehensive, AI-powered Web Accessibility Audit Platform built for hackathons and production workflows.
-
 ## 🚀 Features
 
 - **Global URL Scanner:** Instantly scan any public webpage for WCAG compliance.
