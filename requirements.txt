@@ -1,0 +1,19 @@
+# AccessiScan AI Platform - Consolidated Requirements
+# Base Web Framework
+fastapi
+uvicorn[standard]
+python-multipart
+
+# Browser Automation & Audit
+playwright
+beautifulsoup4
+httpx
+
+# Utilities & Config
+python-dotenv
+pydantic
+
+# Database & Storage
+firebase-admin
+google-cloud-firestore
+google-cloud-storage

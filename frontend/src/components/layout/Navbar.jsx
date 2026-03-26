@@ -1,11 +1,14 @@
 import React from 'react';
-import { Menu, Bell, User } from 'lucide-react';
+import { Menu, Bell, User, Sun, Moon } from 'lucide-react';
 import { useAuthStore } from '../../store/useAuthStore';
-import { useNavigate } from 'react-router-dom';
+import { useThemeStore } from '../../store/useThemeStore';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export default function Navbar({ onMenuClick }) {
   const { user, logout } = useAuthStore();
+  const { theme, toggleTheme } = useThemeStore();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogout = () => {
     logout();
@@ -21,10 +24,26 @@ export default function Navbar({ onMenuClick }) {
         >
           <Menu size={24} />
         </button>
-        <h2 className="text-lg font-semibold hidden sm:block text-slate-200">Welcome back, {user?.name || 'User'}!</h2>
+        {location.pathname.startsWith('/report') ? (
+          <div className="hidden sm:block">
+            <h1 className="text-2xl font-bold text-white mb-0 leading-none">Audit Report</h1>
+            <p className="text-xs text-slate-400 font-medium tracking-wide mt-1.5">Target Results for Accessibility Analysis</p>
+          </div>
+        ) : (
+          <h2 className="text-lg font-semibold hidden sm:block text-slate-200">Welcome back, {user?.name || 'User'}!</h2>
+        )}
       </div>
 
       <div className="flex items-center gap-4">
+        {location.pathname.startsWith('/report') && (
+          <div className="hidden sm:flex items-center gap-3 mr-2">
+            <button onClick={() => navigate('/scan')} className="bg-slate-800 hover:bg-slate-700 text-white px-5 py-2 rounded-xl border border-slate-700 transition-colors shadow-sm text-sm font-medium">New Scan</button>
+            <button className="bg-primary hover:opacity-90 text-slate-900 px-5 py-2 rounded-xl transition-colors shadow-md text-sm font-bold">Export PDF</button>
+          </div>
+        )}
+        <button onClick={toggleTheme} className="p-2 text-slate-400 hover:text-white rounded-full hover:bg-slate-800 transition-colors">
+          {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+        </button>
         <button className="p-2 text-slate-400 hover:text-white rounded-full hover:bg-slate-800 transition-colors">
           <Bell size={20} />
         </button>

@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "AccessiSimulate",
+  "version": "1.0.0",
+  "description": "Simulate how users with visual, motor, and cognitive disabilities experience your website.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": [
+        "simulation/colorMatrices.js",
+        "simulation/floatingPanel.js",
+        "simulation/keyboardTrap.js",
+        "simulation/groqAnalyzer.js",
+        "simulation/simulation.js",
+        "content.js"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["simulation/*", "icons/*"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

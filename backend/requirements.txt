@@ -1,6 +1,9 @@
 fastapi
-uvicorn[standard]
+uvicorn
 playwright
 httpx
 python-dotenv
 pydantic
+beautifulsoup4
+python-multipart
+firebase-admin

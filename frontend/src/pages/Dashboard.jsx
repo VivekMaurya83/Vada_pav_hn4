@@ -44,7 +44,7 @@ export default function Dashboard() {
             <h1 className="text-3xl font-bold text-white mb-1">Dashboard</h1>
             <p className="text-slate-400">Welcome to your accessibility overview.</p>
           </div>
-          <button className="flex items-center gap-2 bg-gradient-to-r from-primary to-secondary text-slate-900 px-6 py-2.5 rounded-xl font-bold shadow-lg shadow-primary/25 hover:opacity-90 hover:-translate-y-0.5 transition-all">
+          <button className="flex items-center gap-2 bg-primary text-slate-900 px-6 py-2.5 rounded-xl font-bold shadow-lg shadow-primary/40 hover:bg-primary/90 hover:-translate-y-0.5 transition-all">
             <ScanLine size={18} />
             New Scan
           </button>

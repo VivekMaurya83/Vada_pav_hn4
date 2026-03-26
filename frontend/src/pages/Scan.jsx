@@ -2,36 +2,37 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Globe, Chrome, Upload, Download, CheckCircle, Loader2, ArrowRight } from 'lucide-react';
+import { useScanStore } from '../store/useScanStore';
 import PageTransition from '../components/layout/PageTransition';
+import ExtensionManagement from '../components/sections/ExtensionManagement';
 
 export default function Scan() {
   const navigate = useNavigate();
+  const { isScanning, scanProgress, startScan, url, setUrl } = useScanStore();
   const [activeTab, setActiveTab] = useState('url');
-  const [url, setUrl] = useState('');
-  const [isScanning, setIsScanning] = useState(false);
-  const [scanProgress, setScanProgress] = useState(0);
+  const [wcagLevel, setWcagLevel] = useState('AA');
 
-  const handleScan = (e) => {
-    e.preventDefault();
+  // Auto-trigger scan if url is provided via store (e.g. from Navigation Discovery)
+  React.useEffect(() => {
+    if (url && !isScanning) {
+      handleScan();
+    }
+  }, []);
+
+  const handleScan = async (e) => {
+    if (e) e.preventDefault();
     if (!url) return;
     
-    setIsScanning(true);
-    setScanProgress(0);
-    
-    // Mock scanning progress
-    const interval = setInterval(() => {
-      setScanProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          setTimeout(() => {
-            setIsScanning(false);
-            navigate('/report/m-123'); // Redirect to report ID
-          }, 500);
-          return 100;
-        }
-        return prev + 5;
-      });
-    }, 200);
+    const targetUrl = url;
+    // Clear the store URL immediately so it doesn't re-trigger on back navigation
+    if (!e) setUrl(''); 
+
+    try {
+      await startScan(targetUrl, wcagLevel);
+      navigate('/report/current');
+    } catch (err) {
+      alert(`Scan failed: ${err}`);
+    }
   };
 
   const handleFileUpload = (e) => {
@@ -132,6 +133,32 @@ export default function Scan() {
                     </div>
                   </form>
 
+                  {/* WCAG Level Picker */}
+                  {!isScanning && url && (
+                    <div className="mt-2">
+                      <p className="text-xs text-slate-500 uppercase tracking-widest font-bold mb-3">WCAG Conformance Level</p>
+                      <div className="flex gap-3 justify-center">
+                        {['A', 'AA', 'AAA'].map((level) => (
+                          <button
+                            key={level}
+                            type="button"
+                            onClick={() => setWcagLevel(level)}
+                            className={`flex-1 py-3 rounded-xl border font-black text-sm transition-all duration-200 ${
+                              wcagLevel === level
+                              ? 'bg-primary border-primary text-slate-900 shadow-lg shadow-primary/30'
+                              : 'bg-slate-900 border-slate-700 text-slate-400 hover:border-slate-500 hover:text-white'
+                            }`}
+                          >
+                            {level}
+                            <span className="block text-[9px] font-normal mt-0.5 opacity-70">
+                              {level === 'A' ? 'Basic' : level === 'AA' ? 'Standard' : 'Enhanced'}
+                            </span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
                   {/* Mock Loading State */}
                   <AnimatePresence>
                     {isScanning && (
@@ -173,53 +200,8 @@ export default function Scan() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3 }}
-                className="grid grid-cols-1 md:grid-cols-2 gap-6"
               >
-                {/* Instructions Card */}
-                <div className="bg-slate-800/40 backdrop-blur-xl border border-slate-700/50 p-8 rounded-3xl shadow-xl flex flex-col h-full">
-                  <div className="w-14 h-14 rounded-2xl bg-secondary/20 flex items-center justify-center text-secondary mb-6 shadow-inner border border-secondary/20">
-                    <Chrome size={28} />
-                  </div>
-                  <h2 className="text-2xl font-bold text-white mb-2">Local & Auth Scans</h2>
-                  <p className="text-slate-400 mb-8 leading-relaxed">Use our Chrome Extension to audit internal dashboards, localhost environments, and strictly authenticated pages easily.</p>
-                  
-                  <ul className="space-y-5 mb-8 flex-1">
-                    <li className="flex items-start gap-3">
-                      <div className="bg-primary/20 p-1.5 rounded-full text-primary shadow-inner"><CheckCircle size={14} /></div>
-                      <span className="text-slate-300 text-sm leading-relaxed">Download and install the extension packet in developer mode.</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="bg-primary/20 p-1.5 rounded-full text-primary shadow-inner"><CheckCircle size={14} /></div>
-                      <span className="text-slate-300 text-sm leading-relaxed">Navigate to any authenticated page or localhost port.</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="bg-primary/20 p-1.5 rounded-full text-primary shadow-inner"><CheckCircle size={14} /></div>
-                      <span className="text-slate-300 text-sm leading-relaxed">Click "Generate Report" inside the extension and save the JSON output.</span>
-                    </li>
-                  </ul>
-
-                  <button className="w-full bg-slate-700/80 hover:bg-slate-600 border border-slate-600 text-white font-medium py-3.5 px-4 rounded-xl transition-all shadow-lg flex items-center justify-center gap-2 group">
-                    <Download size={18} className="group-hover:-translate-y-0.5 transition-transform" />
-                    Download Extension
-                  </button>
-                </div>
-
-                {/* Upload Card */}
-                <div className="bg-slate-800/20 backdrop-blur-xl border-2 border-dashed border-slate-700 hover:border-primary border-opacity-50 hover:bg-slate-800/40 p-8 rounded-3xl shadow-xl flex flex-col items-center justify-center text-center transition-all duration-300 group relative overflow-hidden min-h-[300px]">
-                  <input 
-                    type="file" 
-                    accept=".json"
-                    onChange={handleFileUpload}
-                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" 
-                    title=""
-                  />
-                  <div className="w-20 h-20 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-500 group-hover:text-primary group-hover:scale-110 group-hover:bg-primary/10 transition-all duration-300 mb-6 shadow-inner">
-                    <Upload size={32} />
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-primary transition-colors">Upload JSON Report</h3>
-                  <p className="text-slate-400 text-sm max-w-[240px] leading-relaxed">Drag and drop the `.json` report generated by your Chrome Extension, or click right here to browse.</p>
-                </div>
-
+                <ExtensionManagement onFileUpload={handleFileUpload} />
               </motion.div>
             )}
 

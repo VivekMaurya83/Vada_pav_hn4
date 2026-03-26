@@ -321,9 +321,23 @@ async function runScan(url) {
 
 // ─── Render Results ────────────────────────────────────────────────
 function renderResults(data) {
-  // Update issue summary
-  issueCount.textContent = `${data.total_issues} issue${data.total_issues !== 1 ? "s" : ""} found`;
+  // Update issue summary with improved display
+  const totalCount = data.total_issues;
+  issueCount.textContent = `${totalCount} ${totalCount === 1 ? "Issue" : "Issues"}`;
+  
+  // Update badge count
+  const issueBadge = document.getElementById("issue-badge-count");
+  if (issueBadge) {
+    issueBadge.textContent = totalCount;
+  }
 
+  // Update pressed state for filter pills
+  document.querySelectorAll(".pill").forEach((pill) => {
+    pill.classList.remove("active");
+    pill.setAttribute("aria-pressed", "false");
+  });
+  document.querySelector(".pill[data-filter='all']").classList.add("active");
+  document.querySelector(".pill[data-filter='all']").setAttribute("aria-pressed", "true");
 
   // Render issue cards
   renderIssues(data.issues, "all");
@@ -331,8 +345,12 @@ function renderResults(data) {
   // Filter pills
   document.querySelectorAll(".pill").forEach((pill) => {
     pill.addEventListener("click", () => {
-      document.querySelectorAll(".pill").forEach((p) => p.classList.remove("active"));
+      document.querySelectorAll(".pill").forEach((p) => {
+        p.classList.remove("active");
+        p.setAttribute("aria-pressed", "false");
+      });
       pill.classList.add("active");
+      pill.setAttribute("aria-pressed", "true");
       renderIssues(data.issues, pill.dataset.filter);
     });
   });
@@ -350,7 +368,7 @@ function renderIssues(issues, filter) {
     issuesList.innerHTML = `
       <div class="empty-state">
         <span>✅</span>
-        <p>${filter === "all" ? "No issues found — great job!" : `No ${filter} issues.`}</p>
+        <p>${filter === "all" ? "No issues found — great job!" : `No ${filter} issues found.`}</p>
       </div>`;
     return;
   }
@@ -359,16 +377,23 @@ function renderIssues(issues, filter) {
     const isBestPractice = issue.rule_id === "best-practice";
     const isUnmapped = issue.rule_id === "unmapped";
     const ruleLabel = isBestPractice ? "Best Practice" : isUnmapped ? "Unmapped" : issue.rule_id.replace(/wcag_/g, "WCAG ").replace(/_/g, ".");
+    
+    // WCAG criterion badge
     const criterionBadge = issue.wcag_criterion
       ? `<span class="issue-criterion">📋 ${escHtml(issue.wcag_criterion)}</span>`
       : isBestPractice
         ? `<span class="issue-criterion best-practice-badge">⭐ Best Practice</span>`
         : "";
+    
+    // Principle and conformance level
     const metaRow = (issue.principle || issue.conformance_level)
-      ? `<div class="issue-meta">${issue.principle ? `<span class="meta-tag">${escHtml(issue.principle)}</span>` : ""}${issue.conformance_level ? `<span class="meta-tag level-${issue.conformance_level.toLowerCase()}">Level ${escHtml(issue.conformance_level)}</span>` : ""}</div>`
+      ? `<div class="issue-meta">
+          ${issue.principle ? `<span class="meta-tag">${escHtml(issue.principle)}</span>` : ""}
+          ${issue.conformance_level ? `<span class="meta-tag level-${issue.conformance_level.toLowerCase()}">Level ${escHtml(issue.conformance_level)}</span>` : ""}
+        </div>`
       : "";
 
-    // Impact explanation & affected users
+    // Impact explanation block with affected users
     const impactBlock = issue.impact_description
       ? `<div class="issue-impact-block">
            <p class="impact-label">⚡ Why this matters</p>
@@ -379,7 +404,7 @@ function renderIssues(issues, filter) {
          </div>`
       : "";
 
-    // Common failures
+    // Common failures collapsible section
     const failuresBlock = issue.common_failures && issue.common_failures.length
       ? `<details class="issue-details">
            <summary>🔎 Common failures (${issue.common_failures.length})</summary>
@@ -389,29 +414,46 @@ function renderIssues(issues, filter) {
 
     return `
     <div class="issue-card" data-impact="${issue.impact}">
-      <div class="issue-top" style="display: flex; align-items: center; gap: 8px;">
-        <span style="background: #333; color: white; border-radius: 50%; min-width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; padding: 0 4px;">#${idx + 1}</span>
+      <!-- Issue Header with Number and Impact Badge -->
+      <div class="issue-top">
+        <span class="issue-number">#${idx + 1}</span>
         ${issue.is_incomplete 
-          ? `<span class="impact-badge impact-incomplete" style="background: var(--orange); color: white;">🔍 Needs Review</span>` 
-          : `<span class="impact-badge impact-${issue.impact}">${impactIcon(issue.impact)} ${issue.impact}</span>`
+          ? `<span class="impact-badge impact-serious" title="This issue needs manual review">🔍 Needs Review</span>` 
+          : `<span class="impact-badge impact-${issue.impact}" title="Impact level: ${issue.impact}">${impactIcon(issue.impact)} ${issue.impact.charAt(0).toUpperCase() + issue.impact.slice(1)}</span>`
         }
-        <span class="issue-rule">${ruleLabel}</span>
+        <span class="issue-rule" title="Rule: ${escHtml(ruleLabel)}">${ruleLabel}</span>
       </div>
+      
+      <!-- WCAG Criterion -->
       ${criterionBadge}
+      
+      <!-- Principle and Conformance Info -->
       ${metaRow}
+      
+      <!-- Main Description -->
       <p class="issue-desc">${escHtml(issue.description)}</p>
-      ${issue.failure_summary ? `<div class="issue-specific-err" style="background: rgba(231,76,60,0.1); border-left: 3px solid var(--red); padding: 8px 10px; margin: 8px 0; border-radius: 4px; font-size: 11px;">
-        <strong style="color:var(--red); display:block; margin-bottom:4px;">Specific Error:</strong>
-        <span style="white-space: pre-wrap;">${escHtml(issue.failure_summary)}</span>
+      
+      <!-- Specific Error/Failure Summary -->
+      ${issue.failure_summary ? `<div class="issue-specific-err">
+        <strong>Specific Error Found:</strong>
+        <span>${escHtml(issue.failure_summary)}</span>
       </div>` : ""}
+      
+      <!-- Impact and Affected Users -->
       ${impactBlock}
+      
+      <!-- HTML Snippet Code Block -->
       ${issue.html_snippet ? `<div class="issue-snippet">${escHtml(issue.html_snippet)}</div>` : ""}
+      
+      <!-- Common Failures Details -->
       ${failuresBlock}
+      
+      <!-- Action Buttons -->
       <div class="issue-actions">
-        <button class="btn-fix" data-idx="${idx}" title="Get AI-powered fix" ${(isBestPractice || isUnmapped) && !issue.html_snippet ? "disabled" : ""}>
+        <button class="btn-fix" data-idx="${idx}" title="Get AI-powered remediation suggestion" ${(isBestPractice || isUnmapped) && !issue.html_snippet ? "disabled" : ""}>
           🤖 Fix with AI
         </button>
-        ${issue.html_snippet ? `<button class="btn-copy" data-snippet="${encodeURIComponent(issue.html_snippet)}" title="Copy HTML snippet">📋 Copy</button>` : ""}
+        ${issue.html_snippet ? `<button class="btn-copy" data-snippet="${encodeURIComponent(issue.html_snippet)}" title="Copy the HTML snippet to clipboard">📋 Copy</button>` : ""}
       </div>
     </div>`;
   }).join("");
@@ -520,7 +562,7 @@ async function openRemediation(issue) {
       <p class="modal-result-label">✅ Corrected HTML</p>
       <div class="modal-code">${escHtml(data.corrected_html)}</div>
       <div class="modal-actions" style="display: flex; gap: 10px; margin-top: 15px;">
-        <button class="btn-fix" id="preview-fix-btn" style="background: var(--blue); flex: 1; justify-content: center;">👀 Preview on Page</button>
+        <button class="btn-fix" id="preview-fix-btn" style="background: #000; flex: 1; justify-content: center;">👀 Preview on Page</button>
         <button class="btn-fix" id="copy-fix-btn" style="flex: 1; justify-content: center;">📋 Copy HTML</button>
       </div>`;
 

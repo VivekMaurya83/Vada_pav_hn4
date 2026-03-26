@@ -1,11 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply bg-dark text-white font-sans antialiased;
-    background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
-    min-height: 100vh;
+  :root {
+    /* LIGHT THEME */
+    --bg-base: #FAF9F6;
+    --bg-surface: #FDFCF8;
+    --bg-surface-deep: #FFFFFF;
+    --bg-surface-hover: #F0EFEB;
+    --text-main: #333333;
+    --text-muted: #555555;
+    --border-subtle: #EAEAEA;
+    --border-highlight: #D1D1D1;
+    --color-primary: #4DB6AC;
+    --color-secondary: #00695C;
+    --active-surface: #E0F2F1;
+    --status-indicator: #FFC107;
   }
+
+  :root[data-theme='dark'] {
+    /* DARK THEME (Original) */
+    --bg-base: #0F172A;
+    --bg-surface: #1E293B; /* slate-800 */
+    --bg-surface-deep: #0f172a; /* slate-900 */
+    --bg-surface-hover: #334155; /* slate-700 */
+    --text-main: #FFFFFF;
+    --text-muted: #94A3B8; /* slate-400 */
+    --border-subtle: #334155; /* slate-700 */
+    --border-highlight: #475569; /* slate-600 */
+    --color-primary: #00FFFF;
+    --color-secondary: #00E5FF;
+    --active-surface: #334155; /* slate-700 */
+    --status-indicator: #FFC107;
+  }
+
+  body {
+    background: var(--bg-base);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    @apply antialiased transition-colors duration-300;
+  }
+
+  :root[data-theme='dark'] body {
+    background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif !important;
+  }
+}
+
+/* Hide scrollbars but keep functionality */
+.custom-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.custom-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

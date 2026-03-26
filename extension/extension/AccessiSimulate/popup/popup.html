@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AccessiSimulate</title>
+  <link rel="stylesheet" href="popup.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="wrapper">
+
+    <!-- ── Header ── -->
+    <header class="header">
+      <div class="header-logo">
+        <div class="logo-orb"></div>
+        <div>
+          <h1 class="brand-name">AccessiSimulate</h1>
+          <p class="brand-sub">Disability Simulation Engine</p>
+        </div>
+      </div>
+      <div id="active-badge" class="active-badge hidden">● LIVE</div>
+    </header>
+
+    <!-- ── Tab Bar ── -->
+    <nav class="tab-bar" role="tablist">
+      <button class="tab-btn active" data-tab="colorblind" role="tab" aria-selected="true" id="tab-cb">
+        <span class="tab-icon">👁</span>
+        <span>Color Blind</span>
+      </button>
+      <button class="tab-btn" data-tab="visual" role="tab" aria-selected="false" id="tab-vis">
+        <span class="tab-icon">🔎</span>
+        <span>Visual</span>
+      </button>
+      <button class="tab-btn" data-tab="motor" role="tab" aria-selected="false" id="tab-mot">
+        <span class="tab-icon">⌨</span>
+        <span>Motor</span>
+      </button>
+    </nav>
+
+    <!-- ── Tab Content ── -->
+    <main class="content">
+
+      <!-- COLOR BLIND TAB -->
+      <section class="tab-panel active" id="panel-colorblind" role="tabpanel">
+        <p class="tab-intro">Simulate the 3 most common types of color vision deficiency that affect <strong>~8% of males</strong>.</p>
+        <div class="mode-grid">
+
+          <button class="mode-card" data-mode="protanopia" id="btn-protanopia">
+            <div class="mode-card-inner">
+              <span class="mode-icon">🔴</span>
+              <div class="mode-info">
+                <strong class="mode-name">Red-Blind</strong>
+                <span class="mode-label">Protanopia</span>
+                <p class="mode-desc">Red tones vanish. Error messages and red CTAs disappear.</p>
+              </div>
+              <div class="mode-status-dot" id="dot-protanopia"></div>
+            </div>
+          </button>
+
+          <button class="mode-card" data-mode="deuteranopia" id="btn-deuteranopia">
+            <div class="mode-card-inner">
+              <span class="mode-icon">🟢</span>
+              <div class="mode-info">
+                <strong class="mode-name">Green-Blind</strong>
+                <span class="mode-label">Deuteranopia</span>
+                <p class="mode-desc">Red/green become identical. Success vs error indistinguishable.</p>
+              </div>
+              <div class="mode-status-dot" id="dot-deuteranopia"></div>
+            </div>
+          </button>
+
+          <button class="mode-card" data-mode="tritanopia" id="btn-tritanopia">
+            <div class="mode-card-inner">
+              <span class="mode-icon">🔵</span>
+              <div class="mode-info">
+                <strong class="mode-name">Blue-Blind</strong>
+                <span class="mode-label">Tritanopia</span>
+                <p class="mode-desc">Blue/yellow confusion. Links and info boxes disappear.</p>
+              </div>
+              <div class="mode-status-dot" id="dot-tritanopia"></div>
+            </div>
+          </button>
+
+        </div>
+      </section>
+
+      <!-- VISUAL IMPAIRMENT TAB -->
+      <section class="tab-panel" id="panel-visual" role="tabpanel">
+        <p class="tab-intro">Simulate how users with visual impairments experience your site's layout, contrast, and structure.</p>
+        <div class="mode-grid">
+
+          <button class="mode-card" data-mode="lowvision" id="btn-lowvision">
+            <div class="mode-card-inner">
+              <span class="mode-icon">👁️</span>
+              <div class="mode-info">
+                <strong class="mode-name">Low Vision</strong>
+                <span class="mode-label">Blur + Low Contrast</span>
+                <p class="mode-desc">Cataracts simulation. Small text and low-contrast UI become illegible.</p>
+              </div>
+              <div class="mode-status-dot" id="dot-lowvision"></div>
+            </div>
+          </button>
+
+          <button class="mode-card" data-mode="tunnel" id="btn-tunnel">
+            <div class="mode-card-inner">
+              <span class="mode-icon">🕳️</span>
+              <div class="mode-info">
+                <strong class="mode-name">Tunnel Vision</strong>
+                <span class="mode-label">Macular Degeneration</span>
+                <p class="mode-desc">Only the center 30% of screen is visible. Nav menus vanish entirely.</p>
+              </div>
+              <div class="mode-status-dot" id="dot-tunnel"></div>
+            </div>
+          </button>
+
+          <button class="mode-card" data-mode="screenreader" id="btn-screenreader">
+            <div class="mode-card-inner">
+              <span class="mode-icon">🔊</span>
+              <div class="mode-info">
+                <strong class="mode-name">Screen Reader</strong>
+                <span class="mode-label">Narrated DOM Order</span>
+                <p class="mode-desc">Page dims. Elements narrated aloud in DOM order via speech synthesis.</p>
+              </div>
+              <div class="mode-status-dot" id="dot-screenreader"></div>
+            </div>
+          </button>
+
+        </div>
+      </section>
+
+      <!-- MOTOR TAB -->
+      <section class="tab-panel" id="panel-motor" role="tabpanel">
+        <p class="tab-intro">Simulate the challenges faced by users with motor impairments, tremors, or who rely on keyboard navigation.</p>
+        <div class="mode-grid">
+
+          <button class="mode-card" data-mode="keyboard" id="btn-keyboard">
+            <div class="mode-card-inner">
+              <span class="mode-icon">⌨️</span>
+              <div class="mode-info">
+                <strong class="mode-name">Keyboard Only</strong>
+                <span class="mode-label">Mouse Disabled</span>
+                <p class="mode-desc">Mouse clicks are completely blocked. Only Tab, Enter, and arrows work.</p>
+              </div>
+              <div class="mode-status-dot" id="dot-keyboard"></div>
+            </div>
+          </button>
+
+          <button class="mode-card" data-mode="tabtrap" id="btn-tabtrap">
+            <div class="mode-card-inner">
+              <span class="mode-icon">🪤</span>
+              <div class="mode-info">
+                <strong class="mode-name">Tab Trap Detector</strong>
+                <span class="mode-label">Focus Audit</span>
+                <p class="mode-desc">Orange focus rings + numbered tab order badges on all focusable elements.</p>
+              </div>
+              <div class="mode-status-dot" id="dot-tabtrap"></div>
+            </div>
+          </button>
+
+          <button class="mode-card" data-mode="slowmotor" id="btn-slowmotor">
+            <div class="mode-card-inner">
+              <span class="mode-icon">🤲</span>
+              <div class="mode-info">
+                <strong class="mode-name">Tremor / Slow Motor</strong>
+                <span class="mode-label">Hand Tremor</span>
+                <p class="mode-desc">Buttons shake on hover. Small click targets are highlighted in red.</p>
+              </div>
+              <div class="mode-status-dot" id="dot-slowmotor"></div>
+            </div>
+          </button>
+
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ── Footer ── -->
+    <footer class="footer">
+      <div class="footer-left">
+        <span class="active-mode-text" id="active-mode-label">No simulation active</span>
+      </div>
+      <button class="btn-exit" id="btn-exit-all" disabled>⏹ Exit</button>
+    </footer>
+
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
