@@ -3,7 +3,7 @@
  * Handles Groq API calls securely (keeps key out of content scripts).
  */
 
-const GROQ_API_KEY = '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';
+const GROQ_API_KEY = '';
 const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
 const GROQ_MODEL = 'llama-3.3-70b-versatile';
 
